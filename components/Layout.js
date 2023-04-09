@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import Footer from "./Footer";
 import Nav from "./Nav";
 
 export default function Layout({ children }) {
@@ -10,11 +11,13 @@ export default function Layout({ children }) {
           <Nav />
         </header>
 
-        <main className="h-[100vh] bg-white container m-auto mt-4 px-4">
+        <main className="h-[100vh]  container m-auto mt-4 px-4">
           {children}
         </main>
 
-        <footer className=" bg-white">Footer</footer>
+        <footer className="">
+          <Footer />
+        </footer>
       </div>
     </>
   );

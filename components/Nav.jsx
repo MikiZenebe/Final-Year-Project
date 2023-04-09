@@ -4,7 +4,7 @@ import { HiShoppingCart } from "react-icons/hi";
 
 export default function Nav() {
   return (
-    <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-sm bg-white/30">
+    <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-md bg-white/30">
       <div className="flex-1">
         <Link href="/" className=" text-base-100 text-xl font-bold">
           Jibruk

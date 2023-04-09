@@ -1,10 +1,15 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import Head from "next/head";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Final Project</h1>
-    </div>
+    <>
+      <Head>
+        <title>Home | Jibruk</title>
+      </Head>
+
+      <div>
+        <h1>Final Project</h1>
+      </div>
+    </>
   );
 }

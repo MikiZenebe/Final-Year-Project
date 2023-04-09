@@ -1,20 +1,20 @@
 import Head from "next/head";
 import React from "react";
+import Nav from "./Nav";
 
 export default function Layout({ children }) {
   return (
     <>
-      <Head>
-        <title>Jibruk E-Commerce</title>
-        <meta name="description" content="Ecommerce Website" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>
-        <header>Header</header>
+      <div className="flex min-h-screen flex-col justify-between">
+        <header className="sticky top-0 ">
+          <Nav />
+        </header>
 
-        <main>{children}</main>
+        <main className="h-[100vh] bg-white container m-auto mt-4 px-4">
+          {children}
+        </main>
 
-        <footer>Footer</footer>
+        <footer className=" bg-white">Footer</footer>
       </div>
     </>
   );

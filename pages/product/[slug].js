@@ -21,7 +21,10 @@ export default function ProductDetail() {
   }
 
   const addToCart = () => {
-    dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity: 1 } });
+    const existItem = state.cart.cartItems.find((c) => c.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity } });
   };
 
   return (

@@ -1,10 +1,13 @@
+import { Context } from "@/utils/Context";
 import data from "@/utils/sample";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 import { HiChevronLeft } from "react-icons/hi";
 
 export default function ProductDetail() {
+  const { state, dispatch } = useContext(Context);
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((p) => p.slug === slug);
@@ -16,6 +19,11 @@ export default function ProductDetail() {
       </div>
     );
   }
+
+  const addToCart = () => {
+    dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity: 1 } });
+  };
+
   return (
     <div>
       <Head>
@@ -70,7 +78,10 @@ export default function ProductDetail() {
                 <p>{product.countInStock > 0 ? "In Stock" : "Unavaliable"}</p>
               </div>
 
-              <button className="mt-2 btn bg-gray-200 text-base-100 active:text-white">
+              <button
+                onClick={addToCart}
+                className="my-auto btn bg-gray-200 text-base-100 active:text-white "
+              >
                 Add to Cart
               </button>
             </div>

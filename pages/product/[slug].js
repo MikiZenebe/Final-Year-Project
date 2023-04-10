@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { HiChevronLeft } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 export default function ProductDetail() {
   const { state, dispatch } = useContext(Context);
@@ -24,6 +25,15 @@ export default function ProductDetail() {
     const existItem = state.cart.cartItems.find((c) => c.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
+    if (product.countInStock < quantity) {
+      toast.error("Sorry, Product is out of stock 🗑️", {
+        position: "top-center",
+        autoClose: 1000,
+      });
+
+      return;
+    }
+
     dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity } });
   };
 
@@ -35,9 +45,11 @@ export default function ProductDetail() {
 
       <div className="max-w-[500px] sm:max-w-[450px] md:max-w-[650px] lg:max-w-[900px] ">
         <div className="font-semibold flex items-center gap-1 my-4">
-          <Link href={`/`}>
-            <HiChevronLeft size={30} />
-          </Link>
+          <button className="btn btn-ghost">
+            <Link href={`/`}>
+              <HiChevronLeft size={30} />
+            </Link>
+          </button>
           <h3>Back to products</h3>
         </div>
 
@@ -46,7 +58,7 @@ export default function ProductDetail() {
             <img
               className="rounded-md sm:w-[300px]"
               src={product.image}
-              alt=""
+              alt={product.name}
             />
           </div>
 
@@ -83,7 +95,7 @@ export default function ProductDetail() {
 
               <button
                 onClick={addToCart}
-                className="my-auto btn bg-gray-200 text-base-100 active:text-white "
+                className="my-auto btn bg-gray-200 text-base-100 active:text-white hover:text-white"
               >
                 Add to Cart
               </button>

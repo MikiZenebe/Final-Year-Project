@@ -7,7 +7,7 @@ export default function Products({ product }) {
     <div>
       <div className="max-w-[500px] sm:max-w-[700px] h-auto">
         <div className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-auto gap-4">
-          <div class="w-auto py-2 m-auto  rounded-2xl">
+          <div className="w-auto py-2 m-auto  rounded-2xl">
             <Link href={`product/${product.slug}`}>
               <img
                 src={product.image}

@@ -2,7 +2,7 @@ const data = {
   products: [
     {
       name: "GUARESS SLIM FIT SHIRT",
-      slug: "guaress slim fit shirt",
+      slug: "guaress slim fit shirt1",
       catagory: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
       price: 1500,
@@ -15,7 +15,7 @@ const data = {
 
     {
       name: "FIT SHIRT",
-      slug: "guaress slim fit shirt",
+      slug: "guaress slim fit shirt2",
       catagory: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
       price: 1500,
@@ -28,7 +28,7 @@ const data = {
 
     {
       name: "GUARESS SLIM FIT SHIRT",
-      slug: "guaress slim fit shirt",
+      slug: "guaress slim fit shirt3",
       catagory: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
       price: 1500,
@@ -41,7 +41,7 @@ const data = {
 
     {
       name: "FIT SHIRT",
-      slug: "guaress slim fit shirt",
+      slug: "guaress slim fit shirt4",
       catagory: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
       price: 1500,
@@ -54,7 +54,7 @@ const data = {
 
     {
       name: "GUARESS SLIM FIT SHIRT",
-      slug: "guaress slim fit shirt",
+      slug: "guaress slim fit shirt5",
       catagory: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
       price: 1500,
@@ -67,7 +67,7 @@ const data = {
 
     {
       name: "FIT SHIRT",
-      slug: "guaress slim fit shirt",
+      slug: "guaress slim fit shirt6",
       catagory: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
       price: 1500,

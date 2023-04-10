@@ -6,8 +6,8 @@ export default function Products({ product }) {
   return (
     <div>
       <div className="max-w-[500px] sm:max-w-[700px] h-auto">
-        <div className="cards flex flex-col max-w-[230px] pb-4 py-2 my-auto mx-auto bg-bas shadow-md  rounded-md h-auto gap-4">
-          <div class="w-auto p-2 m-auto  rounded-2xl">
+        <div className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-auto gap-4">
+          <div class="w-auto py-2 m-auto  rounded-2xl">
             <Link href={`product/${product.slug}`}>
               <img
                 src={product.image}

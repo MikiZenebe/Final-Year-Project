@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { HiOutlineShoppingCart, HiXCircle } from "react-icons/hi";
+import dynamic from "next/dynamic";
 
-export default function CartPage() {
+function CartPage() {
   const router = useRouter();
   const { state, dispatch } = useContext(Context);
   const {
@@ -157,3 +158,5 @@ export default function CartPage() {
     </>
   );
 }
+
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false });

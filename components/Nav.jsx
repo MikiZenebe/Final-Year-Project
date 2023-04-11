@@ -1,11 +1,16 @@
 import { Context } from "@/utils/Context";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 
 export default function Nav() {
   const { state, dispatch } = useContext(Context);
   const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, []);
 
   return (
     <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-md bg-white/30">
@@ -21,9 +26,9 @@ export default function Nav() {
               <div className="indicator">
                 <HiShoppingCart size={25} color="black" />
 
-                {cart.cartItems.length > 0 && (
+                {cartItemsCount > 0 && (
                   <span className="badge badge-sm indicator-item text-white">
-                    {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    {cartItemsCount}
                   </span>
                 )}
               </div>

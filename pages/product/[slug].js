@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 export default function ProductDetail() {
   const { state, dispatch } = useContext(Context);
+  const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((p) => p.slug === slug);
@@ -35,6 +36,7 @@ export default function ProductDetail() {
     }
 
     dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity } });
+    router.push('/cart')
   };
 
   return (

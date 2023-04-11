@@ -16,6 +16,11 @@ export default function CartPage() {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
 
+  const updateCartHandler = (item, qty) => {
+    const quantity = Number(qty);
+    dispatch({ type: "ADD_TO_CART", payload: { ...item, quantity } });
+  };
+
   return (
     <>
       <Head>
@@ -92,8 +97,23 @@ export default function CartPage() {
                         </div>
                       </td>
                       <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 items-center text-center ">
-                        {item.quantity}
+                        <button className="btn btn-ghost">
+                          <select
+                            className="bg-white text-base-100 select select-bordered select-sm items-center max-w-xs"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              updateCartHandler(item, e.target.value)
+                            }
+                          >
+                            {[...Array(item.countInStock).keys()].map((x) => (
+                              <option value={x + 1} key={x + 1}>
+                                {x + 1}
+                              </option>
+                            ))}
+                          </select>
+                        </button>
                       </td>
+
                       <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 text-center">
                         ${item.price}
                       </td>
@@ -116,7 +136,7 @@ export default function CartPage() {
 
             <div className="mt-7 sm:mt-4 md:mt-0 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[220px] sm:mx-auto justify-center h-[150px]">
               <div className="card-body text-white">
-                <div className="flex items-center gap-16 px-1 sm:px-0 justify-between">
+                <div className="flex items-center gap-14 px-1 sm:px-0 justify-between">
                   Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}){""}
                   <p>
                     ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}

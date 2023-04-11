@@ -54,7 +54,7 @@ export default function ProductDetail() {
         </div>
 
         <div className="max-w-[400px] mt-12 sm:max-w-[900px] sm:grid sm:grid-cols-3 gap-20 sm:w-full sm:mx-auto md:mx-auto lg:mx-auto ">
-          <div className="mx-auto flex justify-center items-center sm:w-[200px]">
+          <div className="mx-auto sm:mt-6 flex justify-center items-center sm:w-[200px]">
             <img
               className="rounded-md sm:w-[300px]"
               src={product.image}
@@ -62,7 +62,7 @@ export default function ProductDetail() {
             />
           </div>
 
-          <div className="flex flex-col mx-auto justify-center  gap-6 mt-4 sm:w-[230px] sm:mx-6 text-center sm:text-start">
+          <div className="flex flex-col mx-auto justify-center  gap-4 mt-4 sm:w-[230px] sm:mx-6 text-center sm:text-start">
             <h3 className="text-base-100 font-bold ">{product.name}</h3>
             <h3>
               <span className="text-base-100 font-bold ">Catagory:</span>{" "}
@@ -81,7 +81,7 @@ export default function ProductDetail() {
             </h3>
           </div>
 
-          <div className="mt-6 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[200px] sm:mx-20">
+          <div className="mt-6 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[200px] sm:mx-20 h-[180px]">
             <div className="card-body text-white">
               <div className="flex items-center gap-24 px-1 sm:px-0 justify-between">
                 <h3>Price</h3>
@@ -95,7 +95,7 @@ export default function ProductDetail() {
 
               <button
                 onClick={addToCart}
-                className="my-auto btn bg-gray-200 text-base-100 active:text-white hover:text-white"
+                className="my-auto btn  bg-gray-200 text-base-100 active:text-white hover:text-white"
               >
                 Add to Cart
               </button>

@@ -6,7 +6,26 @@ export default function Products({ product }) {
   return (
     <div>
       <div className="max-w-[500px] sm:max-w-[700px] h-auto">
-        <div className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-auto gap-4">
+        <div>
+          <Link href={`product/${product.slug}`}>
+            <div
+              style={{ boxShadow: " 0px 70px 73px -33px rgba(0, 0, 0, 0.12)" }}
+              className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-[300px] gap-4"
+            >
+              <img
+                src={product.image}
+                alt=""
+                className="w-[200px] p-4 m-auto rounded-md"
+              />
+
+              <div className="bg-base-100 w-[200px] mx-auto rounded-tl-xl rounded-tr-xl text-white items-center flex flex-col ">
+                <p className=" text-center">{product.name}</p>
+                <p className="text-center font-bold 0">${product.price}</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+        {/* <div className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-auto gap-4">
           <div className="w-auto py-2 m-auto  rounded-2xl">
             <Link href={`product/${product.slug}`}>
               <img
@@ -33,7 +52,7 @@ export default function Products({ product }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

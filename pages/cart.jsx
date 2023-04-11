@@ -114,7 +114,7 @@ export default function CartPage() {
               </table>
             </div>
 
-            <div className="mt-7 sm:mt-4 md:mt-0 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[220px] sm:mx-auto justify-center">
+            <div className="mt-7 sm:mt-4 md:mt-0 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[220px] sm:mx-auto justify-center h-[150px]">
               <div className="card-body text-white">
                 <div className="flex items-center gap-16 px-1 sm:px-0 justify-between">
                   Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}){""}

@@ -6,25 +6,50 @@ export default function Products({ product }) {
   return (
     <div>
       <div className="max-w-[500px] sm:max-w-[700px] h-auto">
-        <div>
-          <Link href={`product/${product.slug}`}>
-            <div
-              style={{ boxShadow: " 0px 70px 73px -33px rgba(0, 0, 0, 0.12)" }}
-              className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-[300px] gap-4"
-            >
-              <img
-                src={product.image}
-                alt=""
-                className="w-[200px] p-4 m-auto rounded-md"
-              />
+        <section className="bg-white   text-gray-700 sm:py-6">
+          <div className="mx-auto mt-8 sm:mt-0  max-w-screen-xl px-4 sm:px-6 lg:px-8">
+            <div className="cards relative group rounded-lg">
+              <div className="overflow-hidden aspect-w-1 aspect-h-1">
+                <Link href={`product/${product.slug}`}>
+                  <img
+                    className="object-cover w-full h-full "
+                    src={product.image}
+                    alt=""
+                  />
+                </Link>
+              </div>
+              <div className="absolute left-3 top-3">
+                <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full">
+                  New
+                </p>
+              </div>
+              <div className="flex items-start justify-between mt-4 space-x-4">
+                <div>
+                  <h3 className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                    <Link href={`product/${product.slug}`}>
+                      {" "}
+                      {product.name}
+                      <span
+                        className="absolute inset-0"
+                        aria-hidden="true"
+                      ></span>
+                    </Link>
+                  </h3>
+                  <div className="flex items-center mt-2.5 space-x-px">
+                    ⭐⭐⭐⭐⭐
+                  </div>
+                </div>
 
-              <div className="bg-base-100 w-[200px] mx-auto rounded-tl-xl rounded-tr-xl text-white items-center flex flex-col ">
-                <p className=" text-center">{product.name}</p>
-                <p className="text-center font-bold 0">${product.price}</p>
+                <div className="text-right">
+                  <p className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                    ${product.price}
+                  </p>
+                </div>
               </div>
             </div>
-          </Link>
-        </div>
+          </div>
+        </section>
+
         {/* <div className="cards flex flex-col max-w-[230px]  my-auto mx-auto shadow-md  rounded-md h-auto gap-4">
           <div className="w-auto py-2 m-auto  rounded-2xl">
             <Link href={`product/${product.slug}`}>

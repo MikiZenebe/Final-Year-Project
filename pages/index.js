@@ -12,10 +12,20 @@ export default function Home() {
 
       <Banner />
 
-      <div className="grid flex-col gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {data.products.map((product) => (
-          <Products product={product} key={product.slug} />
-        ))}
+      <div>
+        <div className="mx-auto max-w-md text-center mb-8">
+          <h2 className="font-serif text-2xl font-bold sm:text-3xl">
+            Our Products
+          </h2>
+          <p className="mt-4 text-base text-gray-700">
+            Choose and add to it cart of your favorite
+          </p>
+        </div>
+        <div className="grid flex-col  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {data.products.map((product) => (
+            <Products product={product} key={product.slug} />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -62,7 +62,7 @@ export default function ProductDetail() {
             />
           </div>
 
-          <div className="flex flex-col mx-auto justify-center  gap-1 mt-4 sm:w-[230px] sm:mx-6 text-center sm:text-start">
+          <div className="flex flex-col mx-auto justify-center  gap-6 mt-4 sm:w-[230px] sm:mx-6 text-center sm:text-start">
             <h3 className="text-base-100 font-bold ">{product.name}</h3>
             <h3>
               <span className="text-base-100 font-bold ">Catagory:</span>{" "}

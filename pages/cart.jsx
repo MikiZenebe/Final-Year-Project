@@ -1,10 +1,12 @@
 import { Context } from "@/utils/Context";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { HiOutlineShoppingCart, HiXCircle } from "react-icons/hi";
 
 export default function CartPage() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Context);
   const {
     cart: { cartItems },
@@ -111,80 +113,26 @@ export default function CartPage() {
                 </tbody>
               </table>
             </div>
-          </div>
-        )}
 
-        {/* <div className="container max-w-3xl px-4 mx-auto sm:px-8">
-          <div className="py-8">
-            <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
-              <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
-                <table className="min-w-full leading-normal">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-                      >
-                        Item
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-                      >
-                        Quantity
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-                      >
-                        Price
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <a href="#" className="relative block">
-                              <img
-                                alt="profil"
-                                src="/images/person/6.jpg"
-                                className="mx-auto object-cover rounded-full h-10 w-10 "
-                              />
-                            </a>
-                          </div>
-                          <div className="ml-3">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              Julien Huger
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p className="text-gray-900 whitespace-no-wrap">User</p>
-                      </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          23/09/2010
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-0 bg-green-200 rounded-full opacity-50"
-                          ></span>
-                          <span className="relative">active</span>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div className="mt-7 sm:mt-4 md:mt-0 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[220px] sm:mx-auto justify-center">
+              <div className="card-body text-white">
+                <div className="flex items-center gap-16 px-1 sm:px-0 justify-between">
+                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}){""}
+                  <p>
+                    ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => router.push("/shipping")}
+                  className="my-auto btn bg-gray-200 text-base-100 active:text-white hover:text-white"
+                >
+                  Check Out
+                </button>
               </div>
             </div>
           </div>
-        </div> */}
+        )}
       </div>
     </>
   );

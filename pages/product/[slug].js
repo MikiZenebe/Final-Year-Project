@@ -36,6 +36,10 @@ export default function ProductDetail() {
     }
 
     dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity } });
+    toast.success(`${product.name} added to your cart`, {
+      position: "top-center",
+      autoClose: 1000,
+    });
     router.push("/cart");
   };
 
@@ -117,9 +121,7 @@ export default function ProductDetail() {
                     </div>
 
                     <button
-                      onClick={() => {
-                        addToCart;
-                      }}
+                      onClick={addToCart}
                       className="my-auto btn  bg-gray-200 text-base-100 active:text-white hover:text-white"
                     >
                       Add to Cart

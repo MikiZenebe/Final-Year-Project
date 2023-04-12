@@ -4,13 +4,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 
 export default function Nav() {
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, []);
+  }, [cart.cartItems]);
 
   return (
     <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-md bg-white/30">

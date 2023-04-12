@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { HiOutlineShoppingCart, HiXCircle } from "react-icons/hi";
 import dynamic from "next/dynamic";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const router = useRouter();
@@ -120,7 +121,16 @@ function CartPage() {
                       </td>
                       <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 text-center">
                         <button
-                          onClick={() => removeItemHandler(item)}
+                          onClick={() => {
+                            removeItemHandler(item),
+                              toast.error(
+                                `${item.quantity} ${item.name} removed from cart`,
+                                {
+                                  position: "top-center",
+                                  autoClose: 1000,
+                                }
+                              );
+                          }}
                           className="btn btn-ghost focus:bg-red-100 active:bg-red-300 items-center text-center"
                         >
                           <HiXCircle

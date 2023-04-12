@@ -9,7 +9,7 @@ export default function login() {
         <title>Login</title>
       </Head>
 
-      <div classNameName="h-[100%] my-20 flex flex-col justify-center items-center">
+      <div className="h-[100%] my-20 flex flex-col justify-center items-center">
         <div className="flex flex-col  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
           <div className="self-center mb-6 text-xl  text-gray-600 sm:text-2xl dark:text-white font-semibold">
             Login to Jibruk Account
@@ -60,7 +60,7 @@ export default function login() {
               className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
             >
               <span className="ml-2 mr-1">You don't have an account? </span>
-              <span classNameName="font-semibold">Register</span>
+              <span className="font-semibold">Register</span>
             </a>
           </div>
         </div>

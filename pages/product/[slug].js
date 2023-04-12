@@ -105,28 +105,27 @@ export default function ProductDetail() {
 
               <p className="text-gray-500">{product.desc}</p>
 
-              <div className="flex py-2 ">
-                <div className="mt-4 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col  sm:w-[200px] sm:mx-20 h-[150px]">
-                  <div className="card-body text-white">
-                    <div className="flex items-center gap-24 px-1 sm:px-0 justify-between">
-                      <h3>Price</h3>
-                      <p>${product.price}</p>
-                    </div>
+              <div className="border-2 w-auto my-4"></div>
 
-                    <div className="flex items-center gap-20 px-1 justify-between sm:px-0">
-                      <h3>Status</h3>
-                      <p>
-                        {product.countInStock > 0 ? "In Stock" : "Unavaliable"}
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={addToCart}
-                      className="my-auto btn  bg-gray-200 text-base-100 active:text-white hover:text-white"
-                    >
-                      Add to Cart
-                    </button>
+              <div className="flex flex-col justify-center items-center bg-base-200 max-w-[200px] mx-auto rounded-md">
+                <div className="flex flex-col gap-1 mt-2 justify-between ">
+                  <div className="flex gap-12  justify-between text-gray-300">
+                    <p>Price</p>
+                    <p>${product.price}</p>
                   </div>
+
+                  <div className="flex gap-14  text-gray-300">
+                    <p>Status</p>
+                    <p>
+                      {product.countInStock > 0 ? "In Stock" : "Unavaliable"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="my-4">
+                  <button className="bg-white btn btn-sm text-base-200 font-semibold">
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </div>

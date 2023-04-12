@@ -123,7 +123,10 @@ export default function ProductDetail() {
                 </div>
 
                 <div className="my-4">
-                  <button className="bg-white btn btn-sm text-base-200 font-semibold">
+                  <button
+                    onClick={addToCart}
+                    className="bg-white btn btn-sm text-base-200 font-semibold hover:text-white"
+                  >
                     Add to Cart
                   </button>
                 </div>

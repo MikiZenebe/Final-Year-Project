@@ -1,4 +1,21 @@
+import bcrypt from "bcryptjs";
+
 const data = {
+  users: [
+    {
+      name: "Miki",
+      email: "miki@gmail.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: true,
+    },
+
+    {
+      name: "Nhatty",
+      email: "nhatty@gmail.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
       name: "GUARESS SLIM FIT SHIRT",

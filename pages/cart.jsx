@@ -155,7 +155,7 @@ function CartPage() {
                 </div>
 
                 <button
-                  onClick={() => router.push("/shipping")}
+                  onClick={() => router.push("login?redirect=/shipping")}
                   className="my-auto btn bg-gray-200 text-base-100 active:text-white hover:text-white"
                 >
                   Check Out

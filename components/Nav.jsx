@@ -1,12 +1,15 @@
 import { Context } from "@/utils/Context";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
-import { HiShoppingCart } from "react-icons/hi";
+import { HiShoppingCart, HiLogin } from "react-icons/hi";
 
 export default function Nav() {
   const { state } = useContext(Context);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const {
+    cart: { cartItems },
+  } = state;
 
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
@@ -22,57 +25,41 @@ export default function Nav() {
       <div className="flex-none">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <Link href="/cart">
-              <div className="indicator">
-                <HiShoppingCart size={25} color="black" />
+            <div className="indicator">
+              <HiShoppingCart size={25} color="black" />
 
-                {cartItemsCount > 0 && (
-                  <span className="badge badge-sm indicator-item text-white">
-                    {cartItemsCount}
-                  </span>
-                )}
-              </div>
-            </Link>
+              {cartItemsCount > 0 && (
+                <span className="badge badge-sm indicator-item text-white">
+                  {cartItemsCount}
+                </span>
+              )}
+            </div>
           </label>
-          {/* <div
+          <div
             tabIndex={0}
             className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg text-white">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="font-bold text-lg text-white">
+                {cartItemsCount} Items
+              </span>
+              <span className="text-info">
+                ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+              </span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <button className="btn bg-gray-300 btn-block text-base-200 hover:bg-gray-200">
+                  <Link href={"/cart"}> View cart</Link>
+                </button>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
         <div className="dropdown dropdown-end">
           <Link href="/login">
-            <h1>Login</h1>
+            <h1>
+              <HiLogin size={25} color="black" />
+            </h1>
           </Link>
-          {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul> */}
         </div>
       </div>
     </div>

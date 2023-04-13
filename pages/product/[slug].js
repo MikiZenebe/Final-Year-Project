@@ -40,7 +40,6 @@ export default function ProductDetail() {
       position: "top-center",
       autoClose: 1000,
     });
-    router.push("/cart");
   };
 
   return (

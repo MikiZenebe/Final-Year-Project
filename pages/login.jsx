@@ -13,8 +13,9 @@ export default function login() {
     formState: { errors },
   } = useForm();
 
-  const submitHandler = ({ email, password }) => {
-    console.log(email, password);
+  const submitHandler = async ({ email, password }) => {
+    try {
+    } catch (error) {}
   };
   return (
     <>

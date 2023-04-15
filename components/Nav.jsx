@@ -1,7 +1,8 @@
 import { Context } from "@/utils/Context";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
-import { HiShoppingCart, HiLogin } from "react-icons/hi";
+import { HiShoppingCart } from "react-icons/hi";
+import { RiLoginCircleFill } from "react-icons/ri";
 
 export default function Nav() {
   const { state } = useContext(Context);
@@ -54,10 +55,10 @@ export default function Nav() {
             </div>
           </div>
         </div>
-        <div className="dropdown dropdown-end">
+        <div className="dropdown dropdown-end ml-3">
           <Link href="/login">
             <h1>
-              <HiLogin size={25} color="black" />
+              <RiLoginCircleFill size={25} color="black" />
             </h1>
           </Link>
         </div>

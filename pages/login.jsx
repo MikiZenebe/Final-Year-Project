@@ -3,10 +3,22 @@ import Link from "next/link";
 import React from "react";
 import { HiMail, HiLockOpen } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import Icon from "../assets/server.png";
-import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function login() {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const { redirect } = router.query;
+
+  useEffect(() => {
+    if (session?.user) {
+      router.push(redirect || "/");
+    }
+  }, [router, session, redirect]);
+
   const {
     handleSubmit,
     register,
@@ -15,8 +27,19 @@ export default function login() {
 
   const submitHandler = async ({ email, password }) => {
     try {
-    } catch (error) {}
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+      if (res.error) {
+        toast.error(res.error);
+      }
+    } catch (err) {
+      toast.error(getError(err));
+    }
   };
+
   return (
     <>
       <Head>

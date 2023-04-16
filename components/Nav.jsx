@@ -1,10 +1,12 @@
 import { Context } from "@/utils/Context";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 import { RiLoginCircleFill } from "react-icons/ri";
 
 export default function Nav() {
+  const { status, data: session } = useSession();
   const { state } = useContext(Context);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -56,11 +58,17 @@ export default function Nav() {
           </div>
         </div>
         <div className="dropdown dropdown-end ml-3">
-          <Link href="/login">
-            <h1>
-              <RiLoginCircleFill size={25} color="black" />
-            </h1>
-          </Link>
+          {status === "loading" ? (
+            "Loading"
+          ) : session?.user ? (
+            session.user.name
+          ) : (
+            <Link href="/login">
+              <h1>
+                <RiLoginCircleFill size={25} color="black" />
+              </h1>
+            </Link>
+          )}
         </div>
       </div>
     </div>

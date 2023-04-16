@@ -32,7 +32,7 @@ export default function Nav() {
           Jibruk
         </Link>
       </div>
-      <div className="flex-none">
+      <div className="flex-none items-center justify-center">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -64,7 +64,7 @@ export default function Nav() {
             </div>
           </div>
         </div>
-        <div className="dropdown dropdown-end ml-3">
+        <div className="dropdown dropdown-end ml-3 ">
           {status === "loading" ? (
             "Loading"
           ) : session?.user ? (
@@ -103,7 +103,7 @@ export default function Nav() {
           ) : (
             <button>
               <Link href="/login">
-                <h1>
+                <h1 className="items-center">
                   <RiLoginCircleFill size={25} color="black" />
                 </h1>
               </Link>

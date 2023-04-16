@@ -1,13 +1,14 @@
 import { Context } from "@/utils/Context";
-import { useSession } from "next-auth/react";
+import Cookies from "js-cookie";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
-import { RiLoginCircleFill } from "react-icons/ri";
+import { RiLoginCircleFill, RiLogoutCircleFill } from "react-icons/ri";
 
 export default function Nav() {
   const { status, data: session } = useSession();
-  const { state } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const {
@@ -17,6 +18,12 @@ export default function Nav() {
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
+
+  const logoutHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+    signOut({ callbackUrl: "/login" });
+  };
 
   return (
     <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-md bg-white/30">
@@ -61,7 +68,38 @@ export default function Nav() {
           {status === "loading" ? (
             "Loading"
           ) : session?.user ? (
-            session.user.name
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                {session.user.name}
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link href="/profile" className="justify-between text-white">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/order-history"
+                    className="justify-between text-white"
+                  >
+                    Order History
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    onClick={logoutHandler}
+                    className="justify-between text-white"
+                  >
+                    Logout <RiLogoutCircleFill size={25} />
+                  </Link>
+                </li>
+              </ul>
+            </div>
           ) : (
             <button>
               <Link href="/login">

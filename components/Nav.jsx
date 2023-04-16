@@ -63,11 +63,13 @@ export default function Nav() {
           ) : session?.user ? (
             session.user.name
           ) : (
-            <Link href="/login">
-              <h1>
-                <RiLoginCircleFill size={25} color="black" />
-              </h1>
-            </Link>
+            <button>
+              <Link href="/login">
+                <h1>
+                  <RiLoginCircleFill size={25} color="black" />
+                </h1>
+              </Link>
+            </button>
           )}
         </div>
       </div>

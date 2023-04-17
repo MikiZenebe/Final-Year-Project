@@ -27,7 +27,14 @@ export default function shipping() {
     setValue("postalCode", shippingAddress.postalCode);
     setValue("country", shippingAddress.country);
     setValue("email", shippingAddress.email);
-  }, []);
+  }, [
+    shippingAddress.fullName,
+    shippingAddress.address,
+    shippingAddress.city,
+    shippingAddress.postalCode,
+    shippingAddress.country,
+    shippingAddress.email,
+  ]);
 
   const submitHandler = ({
     fullName,
@@ -97,7 +104,7 @@ export default function shipping() {
                   type="text"
                   id="fullName"
                   autoFocus
-                  {...register("fullname")}
+                  {...register("fullName")}
                   required
                   className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                 />

@@ -195,10 +195,8 @@ export default function shipping() {
               </div>
             </div>
 
-            <button className="flex bg-base-200  items-center justify-center py-4 px-7 focus:outline-none border rounded  mt-7 md:mt-14 hover:bg-gray-100  focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 hover:text-base-200">
-              <span className="text-sm font-medium text-center hover:text-base-200 capitalize text-white">
-                Next Step
-              </span>
+            <button className="flex bg-base-200  items-center justify-center py-4 px-7 focus:outline-none border rounded  mt-7 md:mt-14 hover:bg-gray-100  focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 hover:text-base-200  text-white">
+              Next Step
             </button>
           </form>
         </div>

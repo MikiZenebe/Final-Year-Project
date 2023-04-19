@@ -36,7 +36,7 @@ const data = {
       slug: "guaress slim fit shirt2",
       category: "shirt",
       image: "https://addismercato.com/var/images/product/200.250/6Y7A2437.jpg",
-      price: 1500,
+      price: 1000,
       brand: "Italy",
       rating: 4.1,
       star: "⭐⭐⭐⭐",

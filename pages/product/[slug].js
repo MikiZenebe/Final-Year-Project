@@ -1,5 +1,7 @@
+import Product from "@/database/models/Product";
 import { Context } from "@/utils/Context";
-import data from "@/utils/sample";
+import db from "@/utils/db";
+import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,12 +9,10 @@ import { useContext } from "react";
 import { HiChevronLeft } from "react-icons/hi";
 import { toast } from "react-toastify";
 
-export default function ProductDetail() {
+export default function ProductDetail(props) {
+  const { product } = props;
+  console.log(props);
   const { state, dispatch } = useContext(Context);
-  const router = useRouter();
-  const { query } = useRouter();
-  const { slug } = query;
-  const product = data.products.find((p) => p.slug === slug);
 
   if (!product) {
     return (
@@ -22,9 +22,10 @@ export default function ProductDetail() {
     );
   }
 
-  const addToCart = () => {
+  const addToCart = async () => {
     const existItem = state.cart.cartItems.find((c) => c.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
 
     if (product.countInStock < quantity) {
       toast.error("Sorry, Product is out of stock 🗑️", {
@@ -93,11 +94,11 @@ export default function ProductDetail() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="text-green-500 text-xl font-semibold">
-                    Save 12%
+                  <p className="text-green-500 text-xl font-semibold items-center">
+                    <span>{product.star}</span> {product.rating}
                   </p>
-                  <p className="text-gray-400 text-sm">
-                    Inclusive of all Taxes.
+                  <p className="text-gray-400 text-sm ml-1">
+                    {product.numReviews} reviews
                   </p>
                 </div>
               </div>
@@ -138,25 +139,16 @@ export default function ProductDetail() {
   );
 }
 
-// {
-//   /* <div className="mt-6 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[200px] sm:mx-20 h-[180px]">
-//     <div className="card-body text-white">
-//       <div className="flex items-center gap-24 px-1 sm:px-0 justify-between">
-//         <h3>Price</h3>
-//         <p>${product.price}</p>
-//       </div>
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { slug } = params;
 
-//       <div className="flex items-center gap-20 px-1 justify-between sm:px-0">
-//         <h3>Status</h3>
-//         <p>{product.countInStock > 0 ? "In Stock" : "Unavaliable"}</p>
-//       </div>
-
-//       <button
-//         onClick={addToCart}
-//         className="my-auto btn  bg-gray-200 text-base-100 active:text-white hover:text-white"
-//       >
-//         Add to Cart
-//       </button>
-//     </div>
-//   </div>; */
-// }
+  await db.connect();
+  const product = await Product.findOne({ slug }).lean();
+  await db.disconnect();
+  return {
+    props: {
+      product: product ? db.convertDocToObj(product) : null,
+    },
+  };
+}

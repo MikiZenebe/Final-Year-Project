@@ -25,7 +25,7 @@ export default function Products({ product }) {
               </div>
               <div className="flex items-start justify-between mt-4 space-x-4">
                 <div>
-                  <h3 className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
+                  <h3 className="text-xs font-bold text-base-200 sm:text-sm md:text-base">
                     <Link href={`product/${product.slug}`}>
                       {" "}
                       {product.name}
@@ -35,8 +35,11 @@ export default function Products({ product }) {
                       ></span>
                     </Link>
                   </h3>
-                  <div className="flex items-center mt-2.5 space-x-px">
-                    ⭐⭐⭐⭐⭐
+
+                  <h3 className="font-medium text-gray-500">{product.brand}</h3>
+                  <div className="flex items-center mt-2.5 space-x-px gap-2 font-semibold text-gray-400">
+                    <p>{product.star}</p>
+                    <p>{product.rating}</p>
                   </div>
                 </div>
 

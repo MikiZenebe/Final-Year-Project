@@ -4,7 +4,6 @@ import db from "@/utils/db";
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useContext } from "react";
 import { HiChevronLeft } from "react-icons/hi";
 import { toast } from "react-toastify";
@@ -27,7 +26,7 @@ export default function ProductDetail(props) {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
 
-    if (product.countInStock < quantity) {
+    if (data.countInStock < quantity) {
       toast.error("Sorry, Product is out of stock 🗑️", {
         position: "top-center",
         autoClose: 1000,
@@ -103,7 +102,7 @@ export default function ProductDetail(props) {
                 </div>
               </div>
 
-              <p className="text-gray-500">{product.desc}</p>
+              <p className="text-gray-500">Description: {product.desc}</p>
 
               <div className="border-2 w-auto my-4"></div>
 

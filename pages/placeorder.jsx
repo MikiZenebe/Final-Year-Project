@@ -1,15 +1,63 @@
 import CheckoutWizard from "@/components/CheckoutWizard";
 import { Context } from "@/utils/Context";
+import { getError } from "@/utils/error";
+import axios from "axios";
+import Cookies from "js-cookie";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+import { useRouter } from "next/router";
+import React, { useContext, useState, useEffect } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { toast } from "react-toastify";
 
-export default function placeorder() {
+export default function PlaceOrder() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const { state, dispatch } = useContext(Context);
   const { cart } = state;
   const { cartItems, shippingAddress, paymentMethod } = cart;
+
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
+  const itemsPrice = round2(
+    cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+  );
+
+  const shippingPrice = itemsPrice > 200 ? 0 : 15;
+  const taxPrice = round2(itemsPrice * 0.15);
+  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
+
+  useEffect(() => {
+    if (!paymentMethod) {
+      router.push("/payment");
+    }
+  }, [paymentMethod, router]);
+
+  const placeOrderHandler = async () => {
+    try {
+      setLoading(true);
+
+      const { data } = await axios.post("/api/orders", {
+        orderItems: cartItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
+      });
+      setLoading(false);
+      dispatch({ type: "CART_CLEAR_ITEM" });
+      Cookies.set("cart", JSON.stringify({ ...cart, cartItems: [] }));
+    } catch (error) {
+      setLoading(false);
+
+      toast.error(getError(error), {
+        position: "top-center",
+        autoClose: 1000,
+      });
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -35,7 +83,7 @@ export default function placeorder() {
         ) : (
           <div className="grid md:grid-cols-4 md:gap-5">
             <div className="overflow-x-auto md:col-span-3 flex flex-col gap-3">
-              <div class="px-4 py-4 sm:px-6 bg-base-200 rounded-md">
+              <div class="px-4 py-4 sm:px-6 bg-gray-700 rounded-md">
                 <div class="flex items-center justify-between">
                   <p class="text-white text-md  md:truncate">
                     Shipping Address
@@ -61,11 +109,11 @@ export default function placeorder() {
                 </div>
               </div>
 
-              <div class="px-4 py-4 sm:px-6 bg-base-200 rounded-md">
+              <div class="px-4 py-4 sm:px-6 bg-gray-700 rounded-md">
                 <div class="flex items-center justify-between">
                   <p class="text-white text-md  md:truncate">Payment Method</p>
                   <div class="flex flex-shrink-0 ml-2">
-                    <p class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg">
+                    <p class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg ">
                       <button>
                         <Link href="/payment">Edit</Link>
                       </button>
@@ -81,7 +129,7 @@ export default function placeorder() {
                 </div>
               </div>
 
-              <div className="card overflow-x-auto p-5 bg-base-200 text-white">
+              <div className="card overflow-x-auto p-5 bg-gray-700 text-white">
                 <h2 className="mb-2 text-lg">Order Items</h2>
                 <table className="min-w-full">
                   <thead className="border-b">
@@ -133,44 +181,44 @@ export default function placeorder() {
               </div>
             </div>
             <div>
-              {/* <div className="card  p-5">
-                <h2 className="mb-2 text-lg">Order Summary</h2>
+              <div className="card mt-2 p-5 bg-base-200 text-white">
+                <h2 className="mb-2 text-lg font-semibold">Order Summary</h2>
                 <ul>
                   <li>
                     <div className="mb-2 flex justify-between">
                       <div>Items</div>
-                      <div>${itemsPrice}</div>
+                      <div className="text-gray-300">{itemsPrice}</div>
                     </div>
                   </li>
                   <li>
                     <div className="mb-2 flex justify-between">
                       <div>Tax</div>
-                      <div>${taxPrice}</div>
+                      <div className="text-gray-300">${taxPrice}</div>
                     </div>
                   </li>
                   <li>
                     <div className="mb-2 flex justify-between">
                       <div>Shipping</div>
-                      <div>${shippingPrice}</div>
+                      <div className="text-gray-300">${shippingPrice}</div>
                     </div>
                   </li>
                   <li>
                     <div className="mb-2 flex justify-between">
                       <div>Total</div>
-                      <div>${totalPrice}</div>
+                      <div className="text-gray-300">${totalPrice}</div>
                     </div>
                   </li>
                   <li>
                     <button
                       disabled={loading}
                       onClick={placeOrderHandler}
-                      className="primary-button w-full"
+                      className="btn bg-white w-full rounded-lg py-1 my-2 text-base-200 hover:text-base-200 font-semibold hover:bg-gray-300 "
                     >
                       {loading ? "Loading..." : "Place Order"}
                     </button>
                   </li>
                 </ul>
-              </div> */}
+              </div>
             </div>
           </div>
         )}
@@ -178,3 +226,5 @@ export default function placeorder() {
     </div>
   );
 }
+
+PlaceOrder.auth = true;

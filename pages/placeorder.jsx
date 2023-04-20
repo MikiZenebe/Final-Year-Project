@@ -48,6 +48,8 @@ export default function PlaceOrder() {
       setLoading(false);
       dispatch({ type: "CART_CLEAR_ITEM" });
       Cookies.set("cart", JSON.stringify({ ...cart, cartItems: [] }));
+
+      router.push(`/order/${data._id}`);
     } catch (error) {
       setLoading(false);
 

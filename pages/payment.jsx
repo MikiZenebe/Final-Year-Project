@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function paymentScreen() {
+export default function PaymentScreen() {
   const router = useRouter();
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
@@ -99,3 +99,5 @@ export default function paymentScreen() {
     </div>
   );
 }
+
+PaymentScreen.auth = true;

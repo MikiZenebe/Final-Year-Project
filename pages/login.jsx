@@ -33,10 +33,16 @@ export default function login() {
         password,
       });
       if (res.error) {
-        toast.error(res.error);
+        toast.error(res.error, {
+          position: "top-center",
+          autoClose: 1000,
+        });
       }
     } catch (err) {
-      toast.error(getError(err));
+      toast.error(getError(err), {
+        position: "top-center",
+        autoClose: 1000,
+      });
     }
   };
 

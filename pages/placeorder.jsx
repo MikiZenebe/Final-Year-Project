@@ -81,26 +81,27 @@ export default function placeorder() {
                 </div>
               </div>
 
-              <div className="card overflow-x-auto p-5">
+              <div className="card overflow-x-auto p-5 bg-base-200 text-white">
                 <h2 className="mb-2 text-lg">Order Items</h2>
                 <table className="min-w-full">
                   <thead className="border-b">
                     <tr>
-                      <th className="px-5 text-left">Item</th>
-                      <th className="    p-5 text-right">Quantity</th>
-                      <th className="  p-5 text-right">Price</th>
-                      <th className="p-5 text-right">Subtotal</th>
+                      <th className="px-5 text-center ">Item</th>
+                      <th className="    p-5 text-center">Quantity</th>
+                      <th className="  p-5 text-center">Price</th>
+                      <th className="p-5 text-center">Subtotal</th>
                     </tr>
                   </thead>
                   <tbody>
                     {cartItems.map((item) => (
-                      <tr key={item._id} className="border-b">
-                        <td>
+                      <tr key={item._id} className="border-b text-center">
+                        <td className="flex gap-3">
                           <Link
                             href={`/product/${item.slug}`}
                             className="flex items-center"
                           >
                             <img
+                              className="ml-2"
                               src={item.image}
                               alt={item.name}
                               width={50}
@@ -110,12 +111,12 @@ export default function placeorder() {
                                 height: "auto",
                               }}
                             />
-                            {item.name}
+                            <span className="ml-3"> {item.name}</span>
                           </Link>
                         </td>
-                        <td className=" p-5 text-right">{item.quantity}</td>
-                        <td className="p-5 text-right">${item.price}</td>
-                        <td className="p-5 text-right">
+                        <td className=" p-5  text-center ">{item.quantity}</td>
+                        <td className="p-5 text-center">${item.price}</td>
+                        <td className="p-5 text-center">
                           ${item.quantity * item.price}
                         </td>
                       </tr>
@@ -123,7 +124,11 @@ export default function placeorder() {
                   </tbody>
                 </table>
                 <div>
-                  <Link href="/cart">Edit</Link>
+                  <p class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg mt-2">
+                    <button>
+                      <Link href="/cart">Edit</Link>
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>

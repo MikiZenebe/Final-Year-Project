@@ -85,22 +85,22 @@ export default function PlaceOrder() {
         ) : (
           <div className="grid md:grid-cols-4 md:gap-5">
             <div className="overflow-x-auto md:col-span-3 flex flex-col gap-3">
-              <div class="px-4 py-4 sm:px-6 bg-gray-700 rounded-md">
-                <div class="flex items-center justify-between">
-                  <p class="text-white text-md  md:truncate">
+              <div className="px-4 py-4 sm:px-6 bg-gray-700 rounded-md">
+                <div className="flex items-center justify-between">
+                  <p className="text-white text-md  md:truncate">
                     Shipping Address
                   </p>
-                  <div class="flex flex-shrink-0 ml-2">
-                    <p class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg">
+                  <div className="flex flex-shrink-0 ml-2">
+                    <p className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg">
                       <button>
                         <Link href="/shipping">Edit</Link>
                       </button>
                     </p>
                   </div>
                 </div>
-                <div class="mt-2 sm:flex sm:justify-between">
-                  <div class="sm:flex">
-                    <p class="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
+                <div className="mt-2 sm:flex sm:justify-between">
+                  <div className="sm:flex">
+                    <p className="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
                       <div>
                         {shippingAddress.fullName}, {shippingAddress.address},{" "}
                         {shippingAddress.city}, {shippingAddress.postalCode},{" "}
@@ -111,20 +111,22 @@ export default function PlaceOrder() {
                 </div>
               </div>
 
-              <div class="px-4 py-4 sm:px-6 bg-gray-700 rounded-md">
-                <div class="flex items-center justify-between">
-                  <p class="text-white text-md  md:truncate">Payment Method</p>
-                  <div class="flex flex-shrink-0 ml-2">
-                    <p class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg ">
+              <div className="px-4 py-4 sm:px-6 bg-gray-700 rounded-md">
+                <div className="flex items-center justify-between">
+                  <p className="text-white text-md  md:truncate">
+                    Payment Method
+                  </p>
+                  <div className="flex flex-shrink-0 ml-2">
+                    <p className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-lg ">
                       <button>
                         <Link href="/payment">Edit</Link>
                       </button>
                     </p>
                   </div>
                 </div>
-                <div class="mt-2 sm:flex sm:justify-between">
-                  <div class="sm:flex">
-                    <p class="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
+                <div className="mt-2 sm:flex sm:justify-between">
+                  <div className="sm:flex">
+                    <p className="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
                       <div>{paymentMethod}</div>
                     </p>
                   </div>

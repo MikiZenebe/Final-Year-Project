@@ -1,8 +1,8 @@
-import User from "@/database/models/User";
-import db from "@/utils/db";
-import NextAuth from "next-auth";
 import bcryptjs from "bcryptjs";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import User from "../../../database/models/User";
+import db from "../../../utils/db";
 
 export default NextAuth({
   session: {

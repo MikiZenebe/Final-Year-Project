@@ -57,9 +57,12 @@ export default function Nav() {
                 ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
               </span>
               <div className="card-actions">
-                <button className="btn bg-gray-300 btn-block text-base-200 hover:bg-gray-200">
-                  <Link href={"/cart"}> View cart</Link>
-                </button>
+                <Link
+                  className="btn bg-gray-300 btn-block text-base-200 hover:bg-gray-200"
+                  href={"/cart"}
+                >
+                  <button className="text-md">View Cart</button>
+                </Link>
               </div>
             </div>
           </div>

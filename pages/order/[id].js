@@ -3,7 +3,7 @@ import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useReducer, useEffect } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineUser } from "react-icons/ai";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -44,6 +44,21 @@ export default function OrderScreen() {
     }
   }, [order, orderId]);
 
+  const {
+    shippingAddress,
+    paymentMethod,
+    orderItems,
+    itemsPrice,
+    taxPrice,
+    shippingPrice,
+    totalPrice,
+    isPaid,
+    paidAt,
+    isDelivered,
+    deliveredAt,
+  } = order;
+
+  console.log(shippingAddress);
   return (
     <div>
       <Head>
@@ -53,12 +68,9 @@ export default function OrderScreen() {
       <div>
         <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
           <div className="flex justify-start item-start space-y-2 flex-col">
-            <h1 className="text-3xl  lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
+            <h1 className="text-[20px] sm:text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
               {`Order ${orderId}`}
             </h1>
-            <p className="text-base font-medium leading-6 text-gray-600">
-              21st Mart 2021 at 10:34 PM
-            </p>
           </div>
 
           {loading ? (
@@ -74,67 +86,99 @@ export default function OrderScreen() {
             <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
               <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                 <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                  <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">
+                  <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800 mb-2 sm:mb-4">
                     Customer’s Cart
                   </p>
-
                   <div className="mt-6 md:mt-0 flex justify-start flex-col md:flex-row items-start md:items-center space-y-4 md:space-x-6 xl:space-x-8 w-full">
-                    <div className="w-full md:w-40">
-                      <img
-                        className="w-full h-auto hidden md:block"
-                        src="https://i.ibb.co/s6snNx0/Rectangle-17.png"
-                        alt="dress"
-                      />
-                      <img
-                        className="w-[300px] rounded-md mx-auto   md:hidden"
-                        src="https://i.ibb.co/BwYWJbJ/Rectangle-10.png"
-                        alt="dress"
-                      />
-                    </div>
-                    <div className="flex mx-auto justify-between items-start w-full flex-col md:flex-row space-y-4 md:space-y-0">
-                      <div className="w-full flex flex-col justify-start items-start space-y-8">
-                        <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
-                          High Quaility Italic Dress
-                        </h3>
-                        <div className="flex justify-start items-start flex-col space-y-2">
-                          <p className="text-sm dark:text-white leading-none text-gray-800">
-                            <span className="dark:text-gray-400 text-gray-300">
-                              Style:{" "}
-                            </span>{" "}
-                            Italic Minimal Design
-                          </p>
-                          <p className="text-sm dark:text-white leading-none text-gray-800">
-                            <span className="dark:text-gray-400 text-gray-300">
-                              Size:{" "}
-                            </span>{" "}
-                            Small
-                          </p>
-                          <p className="text-sm dark:text-white leading-none text-gray-800">
-                            <span className="dark:text-gray-400 text-gray-300">
-                              Color:{" "}
-                            </span>{" "}
-                            Light Blue
-                          </p>
+                    {orderItems.map((item) => (
+                      <div>
+                        <div className="w-full md:w-40 mb-4 sm:mb-4">
+                          <img
+                            className="w-full h-auto hidden md:block"
+                            src={item.image}
+                            alt="dress"
+                          />
+                          <img
+                            className="w-[300px] rounded-md mx-auto   md:hidden"
+                            src={item.image}
+                            alt="dress"
+                          />
+                        </div>
+
+                        <div className="flex mx-auto justify-between items-start w-full flex-col md:flex-row space-y-4 md:space-y-0">
+                          <div className="w-full flex flex-col justify-start items-start space-y-8">
+                            <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
+                              {item.name}
+                            </h3>
+                            <div className="flex justify-start items-start flex-col space-y-3">
+                              <p className="text-sm dark:text-white leading-none text-gray-800">
+                                <span className="dark:text-gray-400 text-gray-300">
+                                  Quantitiy:{" "}
+                                </span>{" "}
+                                {item.quantity}
+                              </p>
+                              <p className="text-sm dark:text-white leading-none text-gray-800">
+                                <span className="dark:text-gray-400 text-gray-300">
+                                  Price:{" "}
+                                </span>{" "}
+                                ${item.price}
+                              </p>
+
+                              <p className="text-sm dark:text-white leading-none text-gray-800">
+                                <span className="dark:text-gray-400 text-gray-300">
+                                  Subtotal:{" "}
+                                </span>{" "}
+                                ${item.quantity * item.price}
+                              </p>
+                              <p className="text-sm dark:text-white leading-none text-gray-800 ">
+                                {isDelivered ? (
+                                  <span>Deliverd at {deliveredAt}</span>
+                                ) : (
+                                  <span className="my-4 flex justify-center  bg-red-400 py-2 w-[100px] mx-auto rounded-sm">
+                                    Not deliverd
+                                  </span>
+                                )}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex justify-between space-x-8 items-start w-full">
-                        <p className="text-base dark:text-white xl:text-lg leading-6">
-                          $20.00{" "}
-                          <span className="text-red-300 line-through">
-                            {" "}
-                            $30.00
-                          </span>
-                        </p>
-                        <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">
-                          01
-                        </p>
-                        <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">
-                          $20.00
-                        </p>
-                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
+                  <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
+                    <h3 className="text-xl dark:text-white font-semibold leading-5 text-gray-800">
+                      Payment Method
+                    </h3>
+                    <h1 className="text-white font-semibold">
+                      {paymentMethod}
+                    </h1>
+                    <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
+                      {isPaid ? (
+                        <div className="flex justify-between w-full">
+                          <p className="text-base dark:text-white leading-4 text-gray-800">
+                            Paid at
+                          </p>
+                          <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
+                            {paidAt}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="flex justify-between w-full">
+                          <p className="text-base dark:text-white leading-4 text-gray-800">
+                            Paid Status
+                          </p>
+                          <p className="text-base  leading-4 text-red-300   ">
+                            Not paid
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
+
                 <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                   <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
                     <h3 className="text-xl dark:text-white font-semibold leading-5 text-gray-800">
@@ -143,21 +187,18 @@ export default function OrderScreen() {
                     <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
                       <div className="flex justify-between w-full">
                         <p className="text-base dark:text-white leading-4 text-gray-800">
-                          Subtotal
+                          Items
                         </p>
                         <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
-                          $56.00
+                          ${itemsPrice}
                         </p>
                       </div>
                       <div className="flex justify-between items-center w-full">
                         <p className="text-base dark:text-white leading-4 text-gray-800">
-                          Discount{" "}
-                          <span className="bg-gray-200 p-1 text-xs font-medium dark:bg-white dark:text-gray-800 leading-3 text-gray-800">
-                            STUDENT
-                          </span>
+                          Tax
                         </p>
                         <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
-                          -$28.00 (50%)
+                          ${taxPrice}
                         </p>
                       </div>
                       <div className="flex justify-between items-center w-full">
@@ -165,7 +206,7 @@ export default function OrderScreen() {
                           Shipping
                         </p>
                         <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
-                          $8.00
+                          ${shippingPrice}
                         </p>
                       </div>
                     </div>
@@ -174,7 +215,7 @@ export default function OrderScreen() {
                         Total
                       </p>
                       <p className="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">
-                        $36.00
+                        ${totalPrice}
                       </p>
                     </div>
                   </div>
@@ -188,42 +229,24 @@ export default function OrderScreen() {
                   <div className="flex flex-col justify-start items-start flex-shrink-0">
                     <div className="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
                       <img
+                        className="rounded-full"
                         src="https://i.ibb.co/5TSg7f6/Rectangle-18.png"
                         alt="avatar"
                       />
                       <div className="flex justify-start items-start flex-col space-y-2">
                         <p className="text-base dark:text-white font-semibold leading-4 text-left text-gray-800">
-                          David Kent
+                          {shippingAddress.fullName}
                         </p>
                         <p className="text-sm dark:text-gray-300 leading-5 text-gray-600">
-                          10 Previous Orders
+                          {shippingAddress.email}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex justify-center text-gray-800 dark:text-white md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M3 7L12 13L21 7"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      <AiOutlineUser />
                       <p className="cursor-pointer text-sm leading-5 ">
-                        david89@gmail.com
+                        {shippingAddress?.fullName}
                       </p>
                     </div>
                   </div>
@@ -234,22 +257,27 @@ export default function OrderScreen() {
                           Shipping Address
                         </p>
                         <p className="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
-                          180 North King Street, Northhampton MA 1060
-                        </p>
-                      </div>
-                      <div className="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
-                        <p className="text-base dark:text-white font-semibold leading-4 text-center md:text-left text-gray-800">
-                          Billing Address
+                          <span className="font-semibold">Address:</span>{" "}
+                          {shippingAddress?.address}
                         </p>
                         <p className="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
-                          180 North King Street, Northhampton MA 1060
+                          <span className="font-semibold text-white">
+                            {" "}
+                            City:
+                          </span>{" "}
+                          {shippingAddress?.city}
+                        </p>
+                        <p className="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
+                          <span className="font-semibold text-white">
+                            Postal Code:
+                          </span>{" "}
+                          {shippingAddress?.postalCode}
+                        </p>
+                        <p className="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
+                          <span className="font-semibold">Country:</span>{" "}
+                          {shippingAddress?.country}
                         </p>
                       </div>
-                    </div>
-                    <div className="flex w-full justify-center items-center md:justify-start md:items-start">
-                      <button className="mt-6 md:mt-0 dark:border-white dark:hover:bg-gray-900 dark:bg-transparent dark:text-white py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">
-                        Edit Details
-                      </button>
                     </div>
                   </div>
                 </div>

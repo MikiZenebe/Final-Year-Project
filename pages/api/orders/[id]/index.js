@@ -1,5 +1,5 @@
-import Order from "@/database/models/Order";
-import db from "@/utils/db";
+import Order from "../../../../database/models/Order";
+import db from "../../../../utils/db";
 import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {

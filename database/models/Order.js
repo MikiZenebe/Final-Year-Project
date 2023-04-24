@@ -21,6 +21,11 @@ const OrderSchema = new mongoose.Schema(
     },
 
     paymentMethod: { type: String, required: true },
+    paymentResult: {
+      type: mongoose.Schema.Types.ObjectId,
+      status: String,
+      email_address: String,
+    },
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },
     taxPrice: { type: Number, required: true },

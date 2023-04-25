@@ -1,9 +1,9 @@
-import CheckoutWizard from "@/components/CheckoutWizard";
+import CheckoutWizard from "../components/CheckoutWizard";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
-import { Context } from "@/utils/Context";
+import { Context } from "../utils/Context";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
@@ -21,23 +21,24 @@ export default function shipping() {
   const { shippingAddress } = cart;
 
   useEffect(() => {
-    setValue("fullName", shippingAddress.fullName);
+    setValue("FirstName", shippingAddress.FirstName);
+    setValue("LastName", shippingAddress.LastName);
     setValue("address", shippingAddress.address);
     setValue("city", shippingAddress.city);
-    setValue("postalCode", shippingAddress.postalCode);
     setValue("country", shippingAddress.country);
     setValue("email", shippingAddress.email);
   }, [
-    shippingAddress.fullName,
+    shippingAddress.FirstName,
+    shippingAddress.LastName,
     shippingAddress.address,
     shippingAddress.city,
-    shippingAddress.postalCode,
     shippingAddress.country,
     shippingAddress.email,
   ]);
 
   const submitHandler = ({
-    fullName,
+    FirstName,
+    LastName,
     address,
     city,
     postalCode,
@@ -47,7 +48,8 @@ export default function shipping() {
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
       payload: {
-        fullName,
+        FirstName,
+        LastName,
         address,
         city,
         postalCode,
@@ -61,7 +63,8 @@ export default function shipping() {
       JSON.stringify({
         ...cart,
         shippingAddress: {
-          fullName,
+          FirstName,
+          LastName,
           address,
           city,
           postalCode,
@@ -95,20 +98,42 @@ export default function shipping() {
             <div className="mt-8 md:flex items-center">
               <div className="flex flex-col">
                 <label
-                  htmlFor="fullName"
+                  htmlFor="FirstName"
                   className="mb-3 text-sm leading-none text-gray-800"
                 >
-                  Full Name
+                  Fisrt Name
                 </label>
                 <input
                   type="text"
-                  id="fullName"
+                  id="FirstName"
                   autoFocus
-                  {...register("fullName")}
+                  {...register("FirstName")}
                   required
                   className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                 />
               </div>
+
+              <div className="flex flex-col md:ml-12 md:mt-0 mt-8">
+                <label
+                  htmlFor="LastName"
+                  className="mb-3 text-sm leading-none text-gray-800"
+                >
+                  Last Name
+                </label>
+                <input
+                  id="LastName"
+                  type="text"
+                  className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
+                  {...register("LastName", {
+                    minLength: {
+                      value: 3,
+                      message: "Address is more than 2 chars",
+                    },
+                  })}
+                  required
+                />
+              </div>
+
               <div className="flex flex-col md:ml-12 md:mt-0 mt-8">
                 <label
                   htmlFor="address"
@@ -143,21 +168,6 @@ export default function shipping() {
                   type="text"
                   className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                   {...register("city")}
-                  required
-                />
-              </div>
-              <div className="flex flex-col md:ml-12 md:mt-0 mt-8">
-                <label
-                  htmlFor="postalCode"
-                  className="mb-3 text-sm leading-none text-gray-800"
-                >
-                  Postal Code
-                </label>
-                <input
-                  id="postalCode"
-                  type="number"
-                  className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
-                  {...register("postalCode")}
                   required
                 />
               </div>

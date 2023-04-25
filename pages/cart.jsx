@@ -1,4 +1,4 @@
-import { Context } from "@/utils/Context";
+import { Context } from "./../utils/Context";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";

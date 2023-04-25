@@ -1,6 +1,6 @@
-import Layout from "@/components/Layout";
-import "@/styles/globals.css";
-import { ContextProvider } from "@/utils/Context";
+import Layout from "../components/Layout";
+import "../styles/globals.css";
+import { ContextProvider } from "../utils/Context";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";

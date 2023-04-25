@@ -1,9 +1,8 @@
-import Products from "@/components/Products";
+import Products from "../components/Products";
 import Head from "next/head";
-import data from "@/utils/sample";
-import Banner from "@/components/Banner";
-import db from "@/utils/db";
-import Product from "@/database/models/Product";
+import Banner from "../components/Banner";
+import db from "../utils/db";
+import Product from "../database/models/Product";
 
 export default function Home({ products }) {
   return (

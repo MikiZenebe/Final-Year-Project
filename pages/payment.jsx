@@ -1,5 +1,5 @@
-import CheckoutWizard from "@/components/CheckoutWizard";
-import { Context } from "@/utils/Context";
+import CheckoutWizard from "../components/CheckoutWizard";
+import { Context } from "../utils/Context";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import { useRouter } from "next/router";

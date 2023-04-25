@@ -1,6 +1,6 @@
-import CheckoutWizard from "@/components/CheckoutWizard";
-import { Context } from "@/utils/Context";
-import { getError } from "@/utils/error";
+import CheckoutWizard from "../components/CheckoutWizard";
+import { Context } from "../utils/Context";
+import { getError } from "../utils/error";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Head from "next/head";
@@ -102,9 +102,9 @@ export default function PlaceOrder() {
                   <div className="sm:flex">
                     <p className="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
                       <div>
-                        {shippingAddress.fullName}, {shippingAddress.address},{" "}
-                        {shippingAddress.city}, {shippingAddress.postalCode},{" "}
-                        {shippingAddress.country}
+                        {shippingAddress.FirstName}, {shippingAddress.LastName},
+                        {shippingAddress.address}, {shippingAddress.city},{" "}
+                        {shippingAddress.country}, {shippingAddress.email}
                       </div>
                     </p>
                   </div>

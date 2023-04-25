@@ -1,6 +1,6 @@
-import Product from "@/database/models/Product";
-import { Context } from "@/utils/Context";
-import db from "@/utils/db";
+import Product from "../../database/models/Product";
+import { Context } from "../../utils/Context";
+import db from "../../utils/db";
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";

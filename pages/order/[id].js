@@ -1,11 +1,13 @@
-import { getError } from "@/utils/error";
+import { getError } from "../../utils/error";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useReducer, useEffect } from "react";
-import { AiFillCloseCircle, AiOutlineUser } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { BsEnvelopeAt } from "react-icons/bs";
 import { toast } from "react-toastify";
+import Chapa from "../../components/Chapa";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -29,6 +31,7 @@ function reducer(state, action) {
 }
 
 export default function OrderScreen() {
+  const router = useRouter();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { query } = useRouter();
   const orderId = query.id;
@@ -114,6 +117,31 @@ export default function OrderScreen() {
           position: "top-center",
           autoClose: 1000,
         });
+        window.location.reload();
+      } catch (err) {
+        dispatch({ type: "PAY_FAIL", payload: getError(err) });
+        toast.error(getError(err), {
+          position: "top-center",
+          autoClose: 1000,
+        });
+      }
+    });
+  }
+
+  function ChapaApprove(data, actions) {
+    return actions?.order.capture().then(async function (details) {
+      try {
+        dispatch({ type: "PAY_REQUEST" });
+        const { data } = await axios.put(
+          `/api/orders/${order._id}/pay`,
+          details
+        );
+        dispatch({ type: "PAY_SUCCESS", payload: data });
+        toast.success("Order is paid successgully", {
+          position: "top-center",
+          autoClose: 1000,
+        });
+        window.location.reload();
       } catch (err) {
         dispatch({ type: "PAY_FAIL", payload: getError(err) });
         toast.error(getError(err), {
@@ -130,6 +158,9 @@ export default function OrderScreen() {
       autoClose: 1000,
     });
   }
+
+  const tx_ref = `${shippingAddress?.fullName}-tx-${Math.random()}`;
+  const public_key = "CHAPUBK_TEST-w1IMufbbi7OU8XcR3gTH5Z3kQc0Ph3gv";
 
   return (
     <div>
@@ -300,6 +331,20 @@ export default function OrderScreen() {
                               onApprove={onApprove}
                               onError={onError}
                             ></PayPalButtons>
+
+                            <button
+                              onClick={ChapaApprove}
+                              className=" btn bg-green-400 w-[300px] my-3 text-black hover:text-white"
+                            >
+                              <Chapa
+                                shippingAddress1={shippingAddress.FirstName}
+                                shippingAddress2={shippingAddress.email}
+                                shippingAddress3={shippingAddress.LastName}
+                                totalPrice={totalPrice}
+                                tx_ref={tx_ref}
+                                public_key={public_key}
+                              />
+                            </button>
                           </div>
                         )}
                         {loadingPay && <div>Loading...</div>}
@@ -322,18 +367,15 @@ export default function OrderScreen() {
                       />
                       <div className="flex justify-start items-start flex-col space-y-2">
                         <p className="text-base dark:text-white font-semibold leading-4 text-left text-gray-800">
-                          {shippingAddress.fullName}
-                        </p>
-                        <p className="text-sm dark:text-gray-300 leading-5 text-gray-600">
-                          {shippingAddress.email}
+                          {shippingAddress.FirstName} {shippingAddress.LastName}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex justify-center text-gray-800 dark:text-white md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
-                      <AiOutlineUser />
+                      <BsEnvelopeAt />
                       <p className="cursor-pointer text-sm leading-5 ">
-                        {shippingAddress?.fullName}
+                        {shippingAddress.email}
                       </p>
                     </div>
                   </div>
@@ -354,12 +396,7 @@ export default function OrderScreen() {
                           </span>{" "}
                           {shippingAddress?.city}
                         </p>
-                        <p className="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
-                          <span className="font-semibold text-white">
-                            Postal Code:
-                          </span>{" "}
-                          {shippingAddress?.postalCode}
-                        </p>
+
                         <p className="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
                           <span className="font-semibold">Country:</span>{" "}
                           {shippingAddress?.country}

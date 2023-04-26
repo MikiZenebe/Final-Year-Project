@@ -1,7 +1,7 @@
-import User from "@/database/models/User";
-import data from "@/utils/sample";
-import db from "@/utils/db";
-import Product from "@/database/models/Product";
+import User from "../../database/models/User";
+import data from "../../utils/sample";
+import db from "../../utils/db";
+import Product from "../../database/models/Product";
 
 const handler = async (req, res) => {
   await db.connect();

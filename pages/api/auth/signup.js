@@ -1,5 +1,5 @@
-import User from "@/database/models/User";
-import db from "@/utils/db";
+import User from "../../../database/models/User";
+import db from "../../../utils/db";
 import bcryptjs from "bcryptjs";
 
 async function handler(req, res) {

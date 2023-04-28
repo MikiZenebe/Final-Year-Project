@@ -80,23 +80,37 @@ export default function Nav() {
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link href="/profile" className="justify-between text-white">
+                  <Link
+                    href="/profile"
+                    className="justify-between text-white active:bg-white active:text-base-200"
+                  >
                     Profile
                   </Link>
                 </li>
+
                 <li>
                   <Link
                     href="/order-history"
-                    className="justify-between text-white"
+                    className="justify-between text-white active:bg-white active:text-base-200"
                   >
                     Order History
                   </Link>
                 </li>
+                {session.user.isAdmin && (
+                  <li>
+                    <Link
+                      href="/admin/dashboard"
+                      className="justify-between text-white active:bg-white active:text-base-200"
+                    >
+                      Admin Dashboard
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link
                     href="#"
                     onClick={logoutHandler}
-                    className="justify-between text-white"
+                    className="justify-between text-white active:bg-white active:text-base-200"
                   >
                     Logout <RiLogoutCircleFill size={25} />
                   </Link>

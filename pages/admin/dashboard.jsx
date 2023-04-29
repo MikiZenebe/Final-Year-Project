@@ -2,6 +2,34 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { getError } from "../../utils/error";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+  },
+};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -35,6 +63,17 @@ function AdminDashboard() {
     };
     fetchData();
   }, []);
+
+  const data = {
+    labels: summary.salesData?.map((x) => x._id), // 2022/01 2022/03
+    datasets: [
+      {
+        label: "Sales",
+        backgroundColor: "#242933",
+        data: summary.salesData?.map((x) => x.totalSales),
+      },
+    ],
+  };
 
   return (
     <div>
@@ -114,11 +153,11 @@ function AdminDashboard() {
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
-            <div class="col-span-8  rounded-xl sm:bg-gray-50 sm:px-8 h-[700px] md:h-[400px] sm:shadow">
-              <div class="pt-4">
-                <h1 class="py-2 text-2xl font-semibold">Admin Dashboard</h1>
+            <div className="col-span-8  rounded-xl sm:bg-gray-50 sm:px-8 h-auto md:h-auto sm:shadow">
+              <div className="pt-4">
+                <h1 className="py-2 text-2xl font-semibold">Admin Dashboard</h1>
               </div>
-              <hr class="mt-4 mb-8" />
+              <hr className="mt-4 mb-8" />
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4  md:w-[450px] md:mx-auto lg:grid-cols-4  lg:w-[700px] lg:mx-auto xl:w-[800px]">
                 <div className="stats shadow ">
@@ -157,6 +196,18 @@ function AdminDashboard() {
                     <div className="stat-desc text-white">View Users</div>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-20 pb-4">
+                <h2 className="py-2 text-2xl font-semibold text-center">
+                  Sales Report
+                </h2>
+                <Bar
+                  options={{
+                    legend: { display: true, position: "right" },
+                  }}
+                  data={data}
+                />
               </div>
             </div>
           )}

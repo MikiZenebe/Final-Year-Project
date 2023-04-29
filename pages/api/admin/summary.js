@@ -28,8 +28,17 @@ const handler = async (req, res) => {
   const ordersPrice =
     ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0;
 
+  const salesData = await Order.aggregate([
+    {
+      $group: {
+        _id: { $dateToString: { format: "%Y-%m", date: "$createdAt" } },
+        totalSales: { $sum: "$totalPrice" },
+      },
+    },
+  ]);
+
   await db.disconnect();
-  res.send({ ordersCount, productsCount, usersCount, ordersPrice });
+  res.send({ ordersCount, productsCount, usersCount, ordersPrice, salesData });
 };
 
 export default handler;

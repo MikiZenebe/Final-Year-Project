@@ -2,41 +2,13 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { getError } from "../../utils/error";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-  },
-};
 
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
       return { ...state, loading: true, error: "" };
     case "FETCH_SUCCESS":
-      return { ...state, loading: false, summary: action.payload, error: "" };
+      return { ...state, loading: false, orders: action.payload, error: "" };
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     default:
@@ -44,10 +16,10 @@ function reducer(state, action) {
   }
 }
 
-function AdminDashboard() {
-  const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
+export default function AdminOrders() {
+  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
-    summary: { salesData: [] },
+    orders: [],
     error: "",
   });
 
@@ -55,7 +27,7 @@ function AdminDashboard() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get("/api/admin/summary");
+        const { data } = await axios.get(`/api/admin/orders`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
@@ -63,17 +35,6 @@ function AdminDashboard() {
     };
     fetchData();
   }, []);
-
-  const data = {
-    labels: summary.salesData?.map((x) => x._id), // 2022/01 2022/03
-    datasets: [
-      {
-        label: "Sales",
-        backgroundColor: "#242933",
-        data: summary.salesData?.map((x) => x.totalSales),
-      },
-    ],
-  };
 
   return (
     <div>
@@ -102,7 +63,7 @@ function AdminDashboard() {
               htmlFor="select-1"
               className="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-base-200 peer-checked:ring"
             >
-              <Link href="/admin/dashboard">Dashboard</Link>
+              <Link href="/admin/orders">Orders</Link>
             </label>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +81,8 @@ function AdminDashboard() {
             </svg>
             <ul className="max-h-0 select-none flex-col overflow-hidden rounded-b-lg shadow-md transition-all duration-300 peer-checked:max-h-56 peer-checked:py-3">
               <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
-                <Link href="/admin/orders">Orders</Link>
+                {" "}
+                <Link href="/admin/dashboard">Dashboard</Link>
               </li>
               <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
                 <Link href="/admin/products">Products</Link>
@@ -133,10 +95,10 @@ function AdminDashboard() {
 
           <div className="col-span-2 hidden sm:block">
             <ul className="flex flex-col">
-              <li className="mt-5 cursor-pointer border-l-2 border-l-base-200 font-bold border-transparent px-2 py-2  transition hover:border-l-base-200 hover:font-bold">
+              <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-base-200 hover:font-bold">
                 <Link href="/admin/dashboard">Dashboard</Link>
               </li>
-              <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-base-200 hover:font-bold">
+              <li className="mt-5 cursor-pointer border-l-2 border-l-base-200 font-bold border-transparent px-2 py-2 transition hover:border-l-base-200 hover:font-bold">
                 <Link href="/admin/orders">Orders</Link>
               </li>
               <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-base-200 hover:font-bold">
@@ -151,63 +113,64 @@ function AdminDashboard() {
           {loading ? (
             <div>Loading...</div>
           ) : error ? (
-            <div className="alert-error">{error}</div>
+            <div className="alert alert-error w-[500px] h-[50px] items-center font-bold">
+              {error}
+            </div>
           ) : (
-            <div className="col-span-8  rounded-xl sm:bg-gray-50 sm:px-8 h-auto md:h-auto sm:shadow">
+            <div className="col-span-8  rounded-xl sm:bg-gray-50 sm:px-8 sm:w-[520px] md:w-[630px] lg:w-[800px] h-auto md:h-auto sm:shadow">
               <div className="pt-4">
-                <h1 className="py-2 text-2xl font-semibold">Admin Dashboard</h1>
+                <h1 className="py-2 text-2xl font-semibold">Admin Orders</h1>
               </div>
               <hr className="mt-4 mb-8" />
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4  md:w-[450px] md:mx-auto lg:grid-cols-4  lg:w-[700px] lg:mx-auto xl:w-[800px]">
-                <div className="stats shadow ">
-                  <div className="stat">
-                    <div className="stat-title text-white">Total Sales</div>
-                    <div className="stat-value text-[30px] text-green-400">
-                      ${summary.ordersPrice}
-                    </div>
-                    <div className="stat-desc text-white">View Sales</div>
-                  </div>
-                </div>
-                <div className="stats shadow">
-                  <div className="stat">
-                    <div className="stat-title text-white">Total Orders</div>
-                    <div className="stat-value text-[30px] text-green-400">
-                      {summary.ordersCount}
-                    </div>
-                    <div className="stat-desc text-white">View Orders</div>
-                  </div>
-                </div>
-                <div className="stats shadow ">
-                  <div className="stat">
-                    <div className="stat-title text-white">Total Products</div>
-                    <div className="stat-value text-green-400">
-                      {summary.productsCount}{" "}
-                    </div>
-                    <div className="stat-desc text-white">View Products</div>
-                  </div>
-                </div>
-                <div className="stats shadow ">
-                  <div className="stat">
-                    <div className="stat-title text-white">Total Users</div>
-                    <div className="stat-value text-green-400">
-                      {summary.usersCount}{" "}
-                    </div>
-                    <div className="stat-desc text-white">View Users</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-20 pb-4">
-                <h2 className="py-2 text-2xl font-semibold text-center">
-                  Sales Report
-                </h2>
-                <Bar
-                  options={{
-                    legend: { display: true, position: "right" },
-                  }}
-                  data={data}
-                />
+              <div className="overflow-x-auto pb-16">
+                <table className="table table-compact w-full text-white">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>DATE</th>
+                      <th>TOTAL</th>
+                      <th>PAID</th>
+                      <th>DELIVERED</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.map((order) => (
+                      <tr key={order._id}>
+                        <td>{order._id.substring(20, 24)}</td>
+                        <td>{order.createdAt.substring(0, 10)}</td>
+                        <td>${order.totalPrice}</td>
+                        <td>
+                          {" "}
+                          {order.isPaid ? (
+                            <span className="bg-green-300 px-1 text-base-200 rounded-sm">
+                              ${order.paidAt.substring(0, 10)}
+                            </span>
+                          ) : (
+                            "not paid"
+                          )}
+                        </td>
+                        <td>
+                          {order.isDelivered ? (
+                            <span className="bg-green-300 px-1 text-base-200 rounded-sm">
+                              ${order.deliveredAt.substring(0, 10)}
+                            </span>
+                          ) : (
+                            "not delivered"
+                          )}
+                        </td>
+                        <td>
+                          <Link href={`/order/${order._id}`} passHref>
+                            <button className="btn btn-sm text-white">
+                              Details
+                            </button>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}
@@ -217,5 +180,4 @@ function AdminDashboard() {
   );
 }
 
-AdminDashboard.auth = { adminOnly: true };
-export default AdminDashboard;
+AdminOrders.auth = { adminOnly: true };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { getError } from "../../utils/error";
@@ -38,6 +39,10 @@ export default function AdminOrders() {
 
   return (
     <div>
+      <Head>
+        <title>Admin Orders</title>
+      </Head>
+
       <div className="mx-4  max-w-screen-xl sm:mx-8 xl:mx-auto">
         <div className="my-4">
           <div className="alert shadow-lg ">

@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Head from "next/head";
 
 ChartJS.register(
   CategoryScale,
@@ -77,6 +78,10 @@ function AdminDashboard() {
 
   return (
     <div>
+      <Head>
+        <title>Admin Dashboard</title>
+      </Head>
+
       <div className="mx-4  max-w-screen-xl sm:mx-8 xl:mx-auto">
         <div className="my-4">
           <div className="alert shadow-lg ">

@@ -8,6 +8,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { BsEnvelopeAt } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Chapa from "../../components/Chapa";
+import { useSession } from "next-auth/react";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -25,6 +26,19 @@ function reducer(state, action) {
       return { ...state, loadingPay: false, errorPay: action.payload };
     case "PAY_RESET":
       return { ...state, loadingPay: false, successPay: false, errorPay: "" };
+
+    case "DELIVER_REQUEST":
+      return { ...state, loadingDeliver: true };
+    case "DELIVER_SUCCESS":
+      return { ...state, loadingDeliver: false, successDeliver: true };
+    case "DELIVER_FAIL":
+      return { ...state, loadingDeliver: false };
+    case "DELIVER_RESET":
+      return {
+        ...state,
+        loadingDeliver: false,
+        successDeliver: false,
+      };
     default:
       state;
   }
@@ -35,13 +49,24 @@ export default function OrderScreen() {
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { query } = useRouter();
   const orderId = query.id;
+  const { data: session } = useSession();
 
-  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
-    useReducer(reducer, {
-      loading: true,
-      order: {},
-      error: "",
-    });
+  const [
+    {
+      loading,
+      error,
+      order,
+      successPay,
+      loadingPay,
+      loadingDeliver,
+      successDeliver,
+    },
+    dispatch,
+  ] = useReducer(reducer, {
+    loading: true,
+    order: {},
+    error: "",
+  });
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -54,11 +79,20 @@ export default function OrderScreen() {
       }
     };
 
-    if (!order._id || successPay || (order._id && order._id !== orderId)) {
+    if (
+      !order._id ||
+      successPay ||
+      successDeliver ||
+      (order._id && order._id !== orderId)
+    ) {
       fetchOrder();
 
       if (successPay) {
         dispatch({ type: "PAY_RESET" });
+      }
+
+      if (successDeliver) {
+        dispatch({ type: "DELIVER_RESET" });
       }
     } else {
       const loadPaypalScript = async () => {
@@ -74,7 +108,7 @@ export default function OrderScreen() {
       };
       loadPaypalScript();
     }
-  }, [order, orderId, paypalDispatch]);
+  }, [order, orderId, paypalDispatch, successDeliver, successPay]);
 
   const {
     shippingAddress,
@@ -159,6 +193,29 @@ export default function OrderScreen() {
     });
   }
 
+  async function deliverOrderHandler() {
+    try {
+      dispatch({ type: "DELIVER_REQUEST" });
+      const { data } = await axios.put(
+        `/api/admin/orders/${order._id}/deliver`,
+        {}
+      );
+      dispatch({ type: "DELIVER_SUCCESS", payload: data });
+
+      toast.success("Order is delivered", {
+        position: "top-center",
+        autoClose: 1000,
+      });
+    } catch (err) {
+      dispatch({ type: "DELIVER_FAIL", payload: getError(err) });
+
+      toast.success(getError(err), {
+        position: "top-center",
+        autoClose: 1000,
+      });
+    }
+  }
+
   const tx_ref = `${shippingAddress?.fullName}-tx-${Math.random()}`;
   const public_key = "CHAPUBK_TEST-w1IMufbbi7OU8XcR3gTH5Z3kQc0Ph3gv";
 
@@ -235,7 +292,12 @@ export default function OrderScreen() {
                               </p>
                               <p className="text-sm dark:text-white leading-none text-gray-800 ">
                                 {isDelivered ? (
-                                  <span>Deliverd at {deliveredAt}</span>
+                                  <span>
+                                    Deliverd at{" "}
+                                    <span className="text-green-300 ">
+                                      {deliveredAt}
+                                    </span>
+                                  </span>
                                 ) : (
                                   <span className="my-4 flex justify-center  bg-red-400 py-2 w-[100px] mx-auto rounded-sm">
                                     Not deliverd
@@ -350,6 +412,21 @@ export default function OrderScreen() {
                         {loadingPay && <div>Loading...</div>}
                       </div>
                     )}
+
+                    {session.user.isAdmin &&
+                      order.isPaid &&
+                      !order.isDelivered && (
+                        <div className="w-[300px] mx-auto">
+                          {" "}
+                          {loadingDeliver && <div>Loading...</div>}
+                          <button
+                            className=" btn bg-green-400 w-[300px] my-3 text-black hover:text-white mx-auto"
+                            onClick={deliverOrderHandler}
+                          >
+                            Deliver Order
+                          </button>
+                        </div>
+                      )}
                   </div>
                 </div>
               </div>

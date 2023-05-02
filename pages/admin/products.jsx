@@ -53,11 +53,19 @@ export default function AdminProducts() {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(`/api/admin/products`);
       dispatch({ type: "CREATE_SUCCESS" });
-      toast.success("Product created successfully");
+
+      toast.success("Product created successfully ✅", {
+        position: "top-center",
+        autoClose: 1000,
+      });
       router.push(`/admin/product/${data.product._id}`);
     } catch (err) {
       dispatch({ type: "CREATE_FAIL" });
-      toast.error(getError(err));
+
+      toast.error(getError(err), {
+        position: "top-center",
+        autoClose: 1000,
+      });
     }
   };
 
@@ -87,10 +95,16 @@ export default function AdminProducts() {
       dispatch({ type: "DELETE_REQUEST" });
       await axios.delete(`/api/admin/products/${productId}`);
       dispatch({ type: "DELETE_SUCCESS" });
-      toast.success("Product deleted successfully");
+      toast.success("Product deleted successfully ✅", {
+        position: "top-center",
+        autoClose: 1000,
+      });
     } catch (err) {
       dispatch({ type: "DELETE_FAIL" });
-      toast.error(getError(err));
+      toast.error(getError(err), {
+        position: "top-center",
+        autoClose: 1000,
+      });
     }
   };
   return (

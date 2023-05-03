@@ -82,6 +82,38 @@ export default function AdminProductEdit() {
     fetchData();
   }, [productId, setValue]);
 
+  const uploadHandler = async (e, imageField = "image") => {
+    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/upload`;
+    try {
+      dispatch({ type: "UPLOAD_REQUEST" });
+      const {
+        data: { signature, timestamp },
+      } = await axios("/api/admin/cloudinary-sign");
+
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("signature", signature);
+      formData.append("timestamp", timestamp);
+      formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
+      const { data } = await axios.post(url, formData);
+      dispatch({ type: "UPLOAD_SUCCESS" });
+      setValue(imageField, data.secure_url);
+
+      toast.success("Product image uploaded successfully ✅", {
+        position: "top-center",
+        autoClose: 1000,
+      });
+    } catch (err) {
+      dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
+
+      toast.error(getError(err), {
+        position: "top-center",
+        autoClose: 1000,
+      });
+    }
+  };
+
   const submitHandler = async ({
     name,
     slug,
@@ -318,6 +350,7 @@ export default function AdminProductEdit() {
                             autoFocus
                             className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
                             placeholder="Upload Image"
+                            onChange={uploadHandler}
                           />
                           {loadingUpload && <div>Uploading....</div>}
                         </div>

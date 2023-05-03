@@ -45,7 +45,7 @@ export default function OrderHistory() {
       </div>
 
       {loading ? (
-        <div>Loading...</div>
+        <button className="btn loading">loading</button>
       ) : error ? (
         <div>{error}</div>
       ) : (

@@ -69,7 +69,7 @@ export default function Nav() {
         </div>
         <div className="dropdown dropdown-end ml-3 ">
           {status === "loading" ? (
-            "Loading"
+            <button className="btn btn-sm btn-square loading"></button>
           ) : session?.user ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

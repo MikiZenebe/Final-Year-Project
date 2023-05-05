@@ -1,37 +1,70 @@
 import Image from "next/image";
 import React from "react";
 import Ban from "../assets/banner.jpg";
+import Ban2 from "../assets/banner2.jpg";
+import Ban3 from "../assets/banner3.jpg";
 
 export default function Banner() {
   return (
     <div>
-      <section className="relative py-12 sm:py-16 lg:py-20 lg:pb-36">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="grid max-w-lg grid-cols-1 mx-auto lg:max-w-full lg:items-center lg:grid-cols-2 gap-y-12 lg:gap-x-8">
-            <div>
-              <div className="text-center lg:text-left">
-                <h1 className="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:leading-tight lg:text-5xl font-pj">
-                  A special E-Commerce for digital users
-                </h1>
-                <p className="mt-2 text-lg text-gray-600 sm:mt-8 font-inter">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vehicula massa in enim luctus. Rutrum arcu.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <Image
-                width={50}
-                height={50}
-                className="w-full rounded-md"
-                src={Ban}
-                alt=""
-              />
-            </div>
+      <div className="carousel w-full py-12">
+        <div id="slide1" className="carousel-item relative w-full">
+          <Image
+            src={Ban}
+            className="w-[500px] h-[300px] mx-auto object-cover md:w-[800px] md:h-[400px]"
+          />
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide4" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide2" className="btn btn-circle">
+              ❯
+            </a>
           </div>
         </div>
-      </section>
+        <div id="slide2" className="carousel-item relative w-full">
+          <Image
+            src={Ban2}
+            className="w-[500px] h-[250px] mx-auto  md:w-[800px] md:h-[400px]"
+          />
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide1" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide3" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+        <div id="slide3" className="carousel-item relative w-full">
+          <Image
+            src={Ban3}
+            className="w-[500px] h-[250px] mx-auto md:w-[800px] md:h-[400px]"
+          />
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 ">
+            <a href="#slide2" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide4" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+        <div id="slide4" className="carousel-item relative w-full">
+          <img
+            src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+            className="w-full"
+          />
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide3" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide1" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

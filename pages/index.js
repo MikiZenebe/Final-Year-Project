@@ -13,7 +13,7 @@ export default function Home({ products }) {
 
       <Banner />
 
-      <div>
+      <div className="mt-12">
         <div className="mx-auto max-w-md text-center mb-8">
           <h2 className="font-serif text-2xl font-bold sm:text-3xl">
             Our Products

@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useReducer } from "react";
+import { toast } from "react-toastify";
 import { getError } from "../../utils/error";
 
 function reducer(state, action) {
@@ -194,9 +195,20 @@ export default function AdminProducts() {
               </div>
             ) : (
               <div className="col-span-8  rounded-xl sm:bg-gray-50 sm:px-8 sm:w-[520px] md:w-[630px] lg:w-[800px] h-auto md:h-auto sm:shadow">
-                <div className="pt-4">
-                  <h1 className="py-2 text-2xl font-semibold">Admin Orders</h1>
+                <div className="pt-4 flex items-center justify-between">
+                  <h1 className="py-2 text-2xl font-semibold">
+                    Admin Products
+                  </h1>
+                  {loadingDelete && <div>Deleting item...</div>}
+                  <button
+                    disabled={loadingCreate}
+                    onClick={createHandler}
+                    className="btn btn-sm bg-green-400 border-none hover:bg-green-800  text-black hover:text-white outline-none items-center"
+                  >
+                    {loadingCreate ? "Loading" : "Create"}
+                  </button>
                 </div>
+
                 <hr className="mt-4 mb-8" />
 
                 <div className="overflow-x-auto pb-16">
@@ -234,11 +246,12 @@ export default function AdminProducts() {
                               </button>
                             </Link>
 
-                            <Link href={`/order/${product._id}`} passHref>
-                              <button className="btn btn-sm bg-red-400 hover:bg-red-800  text-white">
-                                Delete
-                              </button>
-                            </Link>
+                            <button
+                              onClick={() => deleteHandler(product._id)}
+                              className="btn btn-sm bg-red-400 hover:bg-red-800  text-white"
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                       ))}

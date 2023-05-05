@@ -216,7 +216,7 @@ export default function OrderScreen() {
     }
   }
 
-  const tx_ref = `${shippingAddress?.fullName}-tx-${Math.random()}`;
+  const tx_ref = `${orderId}`;
   const public_key = "CHAPUBK_TEST-w1IMufbbi7OU8XcR3gTH5Z3kQc0Ph3gv";
 
   return (

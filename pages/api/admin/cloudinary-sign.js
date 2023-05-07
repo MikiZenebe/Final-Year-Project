@@ -1,4 +1,6 @@
 const cloudinary = require("cloudinary").v2;
+import dotenv from "dotenv";
+dotenv.config();
 
 export default function signature(req, res) {
   const timestamp = Math.round(new Date().getTime() / 1000);

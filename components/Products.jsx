@@ -8,21 +8,17 @@ export default function Products({ product }) {
       <div className="max-w-[500px] sm:max-w-[700px] h-auto">
         <section className="bg-white   text-gray-700 sm:py-6">
           <div className="mx-auto mt-8 sm:mt-0  max-w-screen-xl px-4 sm:px-6 lg:px-8">
-            <div className="cards relative group rounded-lg">
+            <div className="cards relative group rounded-lg hover:shadow-2xl">
               <div className="overflow-hidden aspect-w-1 aspect-h-1">
                 <Link href={`product/${product.slug}`}>
                   <img
-                    className="object-cover w-full h-full "
+                    className=" w-[150px] h-[150px] mx-auto"
                     src={product.image}
                     alt=""
                   />
                 </Link>
               </div>
-              <div className="absolute left-3 top-3">
-                <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full">
-                  New
-                </p>
-              </div>
+
               <div className="flex items-start justify-between mt-4 space-x-4">
                 <div>
                   <h3 className="text-xs font-bold text-base-200 sm:text-sm md:text-base">

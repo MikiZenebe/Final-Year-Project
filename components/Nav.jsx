@@ -4,9 +4,16 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
-import { RiLoginCircleFill, RiLogoutCircleFill } from "react-icons/ri";
+import {
+  RiLoginCircleFill,
+  RiLogoutCircleFill,
+  RiSearchFill,
+} from "react-icons/ri";
+import { useRouter } from "next/router";
 
 export default function Nav() {
+  const router = useRouter();
+  const [query, setQuery] = useState("");
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Context);
   const { cart } = state;
@@ -25,6 +32,11 @@ export default function Nav() {
     signOut({ callbackUrl: "/login" });
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    router.push(`/search?query=${query}`);
+  };
+
   return (
     <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-md bg-white/30">
       <div className="flex-1">
@@ -32,6 +44,26 @@ export default function Nav() {
           Jibruk
         </Link>
       </div>
+
+      <form
+        onSubmit={submitHandler}
+        className="mx-auto  justify-center md:flex "
+      >
+        <input
+          onChange={(e) => setQuery(e.target.value)}
+          type="text"
+          className="rounded p-1 text-sm input-bordered input input-sm bg-white focus:ring-0 w-[120px]"
+          placeholder="Search"
+        />
+        <button
+          className="rounded btn btn-sm p-1 text-sm "
+          type="submit"
+          id="button-addon2"
+        >
+          <RiSearchFill className="h-5 w-5 text-white" />
+        </button>
+      </form>
+
       <div className="flex-none items-center justify-center">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">

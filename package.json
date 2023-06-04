@@ -18,6 +18,7 @@
     "cloudinary": "^1.36.4",
     "daisyui": "^2.51.5",
     "dotenv": "^16.0.3",
+    "emailjs-com": "^3.2.0",
     "js-cookie": "^3.0.1",
     "mongoose": "^7.0.4",
     "next": "13.3.0",

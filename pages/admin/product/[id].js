@@ -165,11 +165,11 @@ export default function AdminProductEdit() {
 
       <div className="mx-4  max-w-screen-xl sm:mx-8 xl:mx-auto">
         <div className="my-4">
-          <div className="alert shadow-lg ">
+          <div className="alert shadow-lg bg-[#313641]">
             <p className="text-white text-2xl">
               {" "}
               <div className="my-4">
-                <div className="alert shadow-lg ">
+                <div className="alert shadow-lg bg-[#313641]">
                   <p className="text-white text-4xl">Setting</p>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function AdminProductEdit() {
             />
             <label
               htmlFor="select-1"
-              className="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-base-200 peer-checked:ring"
+              className="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-[#313641] peer-checked:ring"
             >
               <Link href="/admin/products">Products</Link>
             </label>
@@ -205,14 +205,14 @@ export default function AdminProductEdit() {
               />
             </svg>
             <ul className="max-h-0 select-none flex-col overflow-hidden rounded-b-lg shadow-md transition-all duration-300 peer-checked:max-h-56 peer-checked:py-3">
-              <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
+              <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-[#313641] hover:text-white">
                 {" "}
                 <Link href="/admin/dashboard">Dashboard</Link>
               </li>
-              <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
+              <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-[#313641] hover:text-white">
                 <Link href="/admin/products">Products</Link>
               </li>
-              <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
+              <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-[#313641] hover:text-white">
                 <Link href="/admin/users">Users</Link>
               </li>
             </ul>
@@ -220,16 +220,16 @@ export default function AdminProductEdit() {
 
           <div className="col-span-2 hidden sm:block">
             <ul className="flex flex-col">
-              <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-base-200 hover:font-bold">
+              <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-[#313641] hover:font-bold">
                 <Link href="/admin/dashboard">Dashboard</Link>
               </li>
-              <li className="mt-5 cursor-pointer  border-transparent px-2 py-2 transition hover:border-l-base-200 hover:font-bold">
+              <li className="mt-5 cursor-pointer  border-transparent px-2 py-2 transition hover:border-l-[#313641] hover:font-bold">
                 <Link href="/admin/orders">Orders</Link>
               </li>
-              <li className="mt-5 cursor-pointer border-l-2 border-l-base-200 font-bold border-transparent px-2 py-2  transition hover:border-l-base-200 hover:font-bold">
+              <li className="mt-5 cursor-pointer border-l-2 border-l-[#313641] font-bold border-transparent px-2 py-2  transition hover:border-l-[#313641] hover:font-bold">
                 <Link href="/admin/products">Products</Link>
               </li>
-              <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-base-200 hover:font-bold">
+              <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-[#313641] hover:font-bold">
                 <Link href="/admin/users">Users</Link>
               </li>
             </ul>
@@ -256,7 +256,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="name"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Name"
                             {...register("name", {
                               required: "Please enter name",
@@ -279,7 +279,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="slug"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Slug"
                             {...register("slug", {
                               required: "Please enter slug",
@@ -302,7 +302,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="price"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Price"
                             {...register("price", {
                               required: "Please enter price",
@@ -325,7 +325,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="image"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Image"
                             {...register("image", {
                               required: "Please choose image",
@@ -348,7 +348,7 @@ export default function AdminProductEdit() {
                             type="file"
                             id="imageFile"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Upload Image"
                             onChange={uploadHandler}
                           />
@@ -362,7 +362,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="category"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Category"
                             {...register("category", {
                               required: "Please enter category",
@@ -385,7 +385,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="brand"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Brand"
                             {...register("brand", {
                               required: "Please enter brand",
@@ -408,7 +408,7 @@ export default function AdminProductEdit() {
                             type="number"
                             id="countInStock"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Quantitiy"
                             {...register("countInStock", {
                               required: "Please enter countInStock",
@@ -431,7 +431,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="star"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Rating Icon"
                             {...register("star", {
                               required: "Please enter ratingIcon",
@@ -446,7 +446,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="rating"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Rating "
                             {...register("rating", {
                               required: "Please enter rating",
@@ -461,7 +461,7 @@ export default function AdminProductEdit() {
                             type="text"
                             id="desc"
                             autoFocus
-                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-base-200 focus:border-transparent"
+                            className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#313641] focus:border-transparent"
                             placeholder="Product Description"
                             {...register("desc", {
                               required: "Please enter description",
@@ -483,7 +483,7 @@ export default function AdminProductEdit() {
                         <button
                           disabled={loadingUpdate}
                           type="submit"
-                          className="py-2 px-4  bg-green-300 hover:bg-gray-500 hover:text-white focus:bg-base-100 focus:text-white text-base-200 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none   rounded-lg "
+                          className="py-2 px-4  bg-green-300 hover:bg-gray-500 hover:text-white focus:bg-base-100 focus:text-white text-[#313641] w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none   rounded-lg "
                         >
                           {loadingUpdate ? "Loading" : "Update"}
                         </button>

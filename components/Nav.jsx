@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
-import { HiShoppingCart } from "react-icons/hi";
+import { HiChat, HiShoppingCart } from "react-icons/hi";
 import {
   RiLoginCircleFill,
   RiLogoutCircleFill,
@@ -138,6 +138,18 @@ export default function Nav() {
                     </Link>
                   </li>
                 )}
+
+                {!session.user.isAdmin && (
+                  <li>
+                    <Link
+                      href="/feedback"
+                      className="justify-between text-white active:bg-white active:text-base-200"
+                    >
+                      Feedback <HiChat size={25} />
+                    </Link>
+                  </li>
+                )}
+
                 <li>
                   <Link
                     href="#"

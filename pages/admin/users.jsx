@@ -78,11 +78,11 @@ export default function users() {
         <div>
           <div className="mx-4  max-w-screen-xl sm:mx-8 xl:mx-auto">
             <div className="my-4">
-              <div className="alert shadow-lg ">
+              <div className="alert shadow-lg bg-[#313641]">
                 <p className="text-white text-2xl">
                   {" "}
                   <div className="my-4">
-                    <div className="alert shadow-lg ">
+                    <div className="alert shadow-lg bg-[#313641]">
                       <p className="text-white text-4xl">Setting</p>
                     </div>
                   </div>
@@ -99,7 +99,7 @@ export default function users() {
                 />
                 <label
                   htmlFor="select-1"
-                  className="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-base-200 peer-checked:ring"
+                  className="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-[#313641] peer-checked:ring"
                 >
                   <Link href="/admin/users">Users</Link>
                 </label>
@@ -118,14 +118,14 @@ export default function users() {
                   />
                 </svg>
                 <ul className="max-h-0 select-none flex-col overflow-hidden rounded-b-lg shadow-md transition-all duration-300 peer-checked:max-h-56 peer-checked:py-3">
-                  <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
+                  <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-[#313641] hover:text-white">
                     {" "}
                     <Link href="/admin/dashboard">Dashboard</Link>
                   </li>
-                  <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
+                  <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-[#313641] hover:text-white">
                     <Link href="/admin/products">Products</Link>
                   </li>
-                  <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-base-200 hover:text-white">
+                  <li className="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-[#313641] hover:text-white">
                     <Link href="/admin/users">Users</Link>
                   </li>
                 </ul>
@@ -133,16 +133,16 @@ export default function users() {
 
               <div className="col-span-2 hidden sm:block">
                 <ul className="flex flex-col">
-                  <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-base-200 hover:font-bold">
+                  <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-[#313641] hover:font-bold">
                     <Link href="/admin/dashboard">Dashboard</Link>
                   </li>
-                  <li className="mt-5 cursor-pointer  border-transparent px-2 py-2 transition hover:border-l-base-200 hover:font-bold">
+                  <li className="mt-5 cursor-pointer  border-transparent px-2 py-2 transition hover:border-l-[#313641] hover:font-bold">
                     <Link href="/admin/orders">Orders</Link>
                   </li>
-                  <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-base-200 hover:font-bold">
+                  <li className="mt-5 cursor-pointer  border-transparent px-2 py-2  transition hover:border-l-[#313641] hover:font-bold">
                     <Link href="/admin/products">Products</Link>
                   </li>
-                  <li className="mt-5 cursor-pointer border-l-2 border-l-base-200 font-bold border-transparent px-2 py-2 transition  hover:font-bold">
+                  <li className="mt-5 cursor-pointer border-l-2 border-l-[#313641] font-bold border-transparent px-2 py-2 transition  hover:font-bold">
                     <Link href="/admin/users">Users</Link>
                   </li>
                 </ul>
@@ -166,13 +166,13 @@ export default function users() {
                   <hr className="mt-4 mb-8" />
 
                   <div className="overflow-x-auto pb-16">
-                    <table className="table table-compact w-full text-white">
+                    <table className="table table-compact w-full text-[#313641]">
                       <thead>
                         <tr>
                           <th>ID</th>
                           <th>NAME</th>
                           <th className="text-center">EMAIL</th>
-                          <th>ADMIN</th>
+
                           <th>ACTIONS</th>
                         </tr>
                       </thead>
@@ -185,9 +185,6 @@ export default function users() {
                             </td>
                             <td className="text-center">
                               {user.shippingAddress.email}
-                            </td>
-                            <td className="text-center">
-                              {user.isAdmin ? "Yes" : "No"}
                             </td>
 
                             <td className="flex gap-2">

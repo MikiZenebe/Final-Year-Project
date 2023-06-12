@@ -54,8 +54,8 @@ export default function login() {
       </Head>
 
       <div className="h-[100%] my-20 flex flex-col justify-center items-center">
-        <div className="flex flex-col  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-          <div className="self-center mb-6 text-xl  text-gray-600 sm:text-2xl dark:text-white font-semibold">
+        <div className="flex flex-col  w-full max-w-md px-4 py-8 bg-[#313641] rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
+          <div className="self-center mb-6 text-xl  text-white sm:text-2xl dark:text-white font-semibold">
             Login to Jibruk Account
           </div>
           <div className="mt-8">
@@ -116,7 +116,7 @@ export default function login() {
               <div className="flex w-full">
                 <button
                   type="submit"
-                  className="py-2 px-4  bg-green-300 hover:bg-gray-500 hover:text-white focus:bg-base-100 focus:text-white text-base-200 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none   rounded-lg "
+                  className="py-2 px-4  bg-green-300 hover:bg-gray-500 hover:text-white focus:bg-[#313641] focus:text-white  w-full transition ease-in duration-200 text-center text-[#313641] font-semibold shadow-md focus:outline-none   rounded-lg "
                 >
                   Login
                 </button>
@@ -124,12 +124,12 @@ export default function login() {
             </form>
           </div>
           <div className="flex items-center justify-center mt-6">
-            <span className="ml-2 mr-1 inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white">
+            <span className="ml-2 mr-1 inline-flex items-center text-xs font-thin text-center text-gray-300 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white">
               You don't have an account?{" "}
             </span>
             <Link
               href={`/register?redirect=${redirect || "/"}`}
-              className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
+              className="inline-flex items-center text-xs font-thin text-center text-gray-300 hover:text-gray-500 dark:text-gray-100 dark:hover:text-white"
             >
               <span className="font-semibold">Register</span>
             </Link>

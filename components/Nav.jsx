@@ -40,7 +40,7 @@ export default function Nav() {
   return (
     <div className="navbar  px-8 py-2 shadow-sm backdrop-blur-md bg-white/30">
       <div className="flex-1">
-        <Link href="/" className=" text-base-100 text-xl font-bold">
+        <Link href="/" className=" text-[#313641] text-xl font-bold">
           Jibruk
         </Link>
       </div>
@@ -79,7 +79,7 @@ export default function Nav() {
           </label>
           <div
             tabIndex={0}
-            className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+            className="mt-3 card card-compact dropdown-content w-52 bg-[#313641] shadow"
           >
             <div className="card-body">
               <span className="font-bold text-lg text-white">
@@ -90,7 +90,7 @@ export default function Nav() {
               </span>
               <div className="card-actions">
                 <Link
-                  className="btn bg-gray-300 btn-block text-base-200 hover:bg-gray-200"
+                  className="btn bg-gray-300 btn-block text-[#313641] hover:bg-gray-200"
                   href={"/cart"}
                 >
                   <button className="text-md">View Cart</button>
@@ -109,7 +109,7 @@ export default function Nav() {
               </label>
               <ul
                 tabIndex={0}
-                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-[#313641] rounded-box w-52"
               >
                 <li>
                   <Link

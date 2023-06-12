@@ -62,8 +62,8 @@ export default function ProfileScreen() {
       </Head>
 
       <div className="h-[100%] my-20 flex flex-col justify-center items-center">
-        <div className="flex flex-col  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-          <div className="self-center mb-6 text-xl  text-gray-600 sm:text-2xl dark:text-white font-semibold">
+        <div className="flex flex-col  w-full max-w-md px-4 py-8 bg-[#313641] rounded-lg shadow  sm:px-6 md:px-8 lg:px-10">
+          <div className="self-center mb-6 text-xl   sm:text-2xl text-white font-semibold">
             Update Your Profile
           </div>
           <div className="mt-8">
@@ -178,7 +178,7 @@ export default function ProfileScreen() {
               </div>
 
               <div className="flex w-full my-4">
-                <button className="py-2 px-4  bg-green-300 hover:bg-gray-500 hover:text-white focus:bg-base-100 focus:text-white text-base-200 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none   rounded-lg ">
+                <button className="py-2 px-4  bg-green-300 hover:bg-gray-500 hover:text-white focus:bg-base-100 focus:text-white  w-full transition ease-in duration-200 text-center text-[#313641] font-semibold shadow-md focus:outline-none   rounded-lg ">
                   Update Profile
                 </button>
               </div>

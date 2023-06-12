@@ -21,7 +21,7 @@ export default function Products({ product }) {
 
               <div className="flex items-start justify-between mt-4 space-x-4">
                 <div>
-                  <h3 className="text-xs font-bold text-base-200 sm:text-sm md:text-base">
+                  <h3 className="text-xs font-bold text-[#313641] sm:text-sm md:text-[#313641]">
                     <Link href={`product/${product.slug}`}>
                       {" "}
                       {product.name}

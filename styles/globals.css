@@ -2,19 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 html,
 body {
@@ -22,14 +10,14 @@ body {
   overflow-x: hidden;
   height: 100vh;
 
-  
-  
+
+
 }
 
 body {
   color: black;
   background: white;
-  
+
 }
 
 a {
@@ -38,16 +26,17 @@ a {
 }
 
 .cards:hover {
-      transform: scale(1.1, 1.1);
-    }
-.cards{
-    transform: scale(1, 1);
-    transition: transform 0.5s ease;
-    
+  transform: scale(1.1, 1.1);
+}
+
+.cards {
+  transform: scale(1, 1);
+  transition: transform 0.5s ease;
+
 
 }
 
-.login{
+.login {
   background-image: url('https://img.freepik.com/free-photo/alarm-clock-top-laptop-with-copy-space_23-2148288215.jpg?w=740&t=st=1681322531~exp=1681323131~hmac=9569cf323fc3312f9deff9a85f8ed160b61c83cb630a5a99ae29f8157386e558');
 
 }

@@ -15,10 +15,10 @@ export default function Home({ products }) {
 
       <div className="mt-12">
         <div className="mx-auto max-w-md text-center mb-8">
-          <h2 className="font-serif text-2xl font-bold sm:text-3xl">
+          <h2 className="font-serif text-2xl font-bold sm:text-3xl text-[#313641]">
             Our Products
           </h2>
-          <p className="mt-4 text-base text-gray-700">
+          <p className="mt-4  text-gray-700">
             Choose and add to it cart of your favorite
           </p>
         </div>

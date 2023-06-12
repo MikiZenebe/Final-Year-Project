@@ -87,7 +87,7 @@ export default function ProductDetail(props) {
                 <div>
                   <div className="rounded-lg bg-gray-100 flex py-2 px-3 ">
                     <span className=" mr-1 mt-1">$</span>
-                    <span className="font-bold text-base-200 text-3xl">
+                    <span className="font-bold text-[#313641] text-3xl">
                       {product.price}
                     </span>
                   </div>
@@ -106,7 +106,7 @@ export default function ProductDetail(props) {
 
               <div className="border-2 w-auto my-4"></div>
 
-              <div className="flex flex-col justify-center items-center bg-base-200 max-w-[200px] mx-auto rounded-md">
+              <div className="flex flex-col justify-center items-center bg-[#313641] max-w-[200px] mx-auto rounded-md">
                 <div className="flex flex-col gap-1 mt-2 justify-between ">
                   <div className="flex gap-12  justify-between text-gray-300">
                     <p>Price</p>
@@ -124,7 +124,7 @@ export default function ProductDetail(props) {
                 <div className="my-4">
                   <button
                     onClick={addToCart}
-                    className="bg-white btn btn-sm text-base-200 font-semibold hover:text-white"
+                    className="bg-white btn btn-sm text-[#313641] font-semibold hover:text-white"
                   >
                     Add to Cart
                   </button>

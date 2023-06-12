@@ -39,7 +39,7 @@ export default function OrderHistory() {
   return (
     <div>
       <div className="my-4">
-        <div className="alert shadow-lg ">
+        <div className="alert shadow-lg bg-[#313641] ">
           <p className="text-white text-2xl">Order History</p>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function OrderHistory() {
         <div>{error}</div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table table-compact w-full text-white">
+          <table className=" table table-compact w-full text-[#313641]">
             <thead>
               <tr>
                 <th>ID</th>
@@ -74,7 +74,7 @@ export default function OrderHistory() {
                         ${order.paidAt.substring(0, 10)}
                       </span>
                     ) : (
-                      "not paid"
+                      <span className="text-red-600">not paid</span> // "not paid"
                     )}
                   </td>
                   <td>
@@ -83,7 +83,7 @@ export default function OrderHistory() {
                         ${order.deliveredAt.substring(0, 10)}
                       </span>
                     ) : (
-                      "not delivered"
+                      <span className="text-red-600">not delivered</span>
                     )}
                   </td>
                   <td>

@@ -100,7 +100,7 @@ export default function PlaceOrder() {
                 </div>
                 <div className="mt-2 sm:flex sm:justify-between">
                   <div className="sm:flex">
-                    <p className="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
+                    <p className="flex items-center font-light text-gray-400 text-md dark:text-gray-400">
                       <div>
                         {shippingAddress.FirstName}, {shippingAddress.LastName},
                         {shippingAddress.address}, {shippingAddress.city},{" "}
@@ -126,7 +126,7 @@ export default function PlaceOrder() {
                 </div>
                 <div className="mt-2 sm:flex sm:justify-between">
                   <div className="sm:flex">
-                    <p className="flex items-center font-light text-gray-500 text-md dark:text-gray-300">
+                    <p className="flex items-center font-light text-gray-400 text-md dark:text-gray-300">
                       <div>{paymentMethod}</div>
                     </p>
                   </div>
@@ -185,7 +185,7 @@ export default function PlaceOrder() {
               </div>
             </div>
             <div>
-              <div className="card mt-2 p-5 bg-base-200 text-white">
+              <div className="card mt-2 p-5 bg-[#313641] text-white">
                 <h2 className="mb-2 text-lg font-semibold">Order Summary</h2>
                 <ul>
                   <li>
@@ -216,7 +216,7 @@ export default function PlaceOrder() {
                     <button
                       disabled={loading}
                       onClick={placeOrderHandler}
-                      className="btn bg-white w-full rounded-lg py-1 my-2 text-base-200 hover:text-base-200 font-semibold hover:bg-gray-300 "
+                      className="btn bg-white w-full rounded-lg py-1 my-2 text-[#313641] hover:text-[#313641] font-semibold hover:bg-gray-300 "
                     >
                       {loading ? "Loading..." : "Place Order"}
                     </button>

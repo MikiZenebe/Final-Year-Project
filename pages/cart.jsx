@@ -43,7 +43,7 @@ function CartPage() {
       </Head>
 
       <div className="my-4">
-        <div className="alert shadow-lg ">
+        <div className="alert shadow-lg bg-[#313641]">
           <p className="text-white text-2xl">Shopping Cart</p>
         </div>
       </div>
@@ -70,25 +70,25 @@ function CartPage() {
                   <tr>
                     <th
                       scope="col"
-                      className="px-5 py-3 text-sm  text-left text-base-100 font-bold uppercase bg-white border-b border-gray-200 "
+                      className="px-5 py-3 text-sm  text-left text-[#313641] font-bold uppercase bg-white border-b border-gray-200 "
                     >
                       Item
                     </th>
                     <th
                       scope="col"
-                      className="px-5 py-3 text-sm  text-center text-base-100 font-bold uppercase bg-white border-b border-gray-200"
+                      className="px-5 py-3 text-sm  text-center text-[#313641] font-bold uppercase bg-white border-b border-gray-200"
                     >
                       Quantity
                     </th>
                     <th
                       scope="col"
-                      className="px-5 py-3 text-sm  text-center text-base-100 font-bold uppercase bg-white border-b border-gray-200"
+                      className="px-5 py-3 text-sm  text-center text-[#313641] font-bold uppercase bg-white border-b border-gray-200"
                     >
                       Price
                     </th>
                     <th
                       scope="col"
-                      className="px-5 py-3 text-sm  text-center text-base-100 font-bold uppercase bg-white border-b border-gray-200"
+                      className="px-5 py-3 text-sm  text-center text-[#313641] font-bold uppercase bg-white border-b border-gray-200"
                     >
                       Remove
                     </th>
@@ -108,13 +108,13 @@ function CartPage() {
                               />
                             </Link>
                           </div>
-                          <div className="ml-3">{item.name}</div>
+                          <div className="ml-3 font-semibold">{item.name}</div>
                         </div>
                       </td>
                       <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 items-center text-center ">
                         <button className="btn btn-ghost">
                           <select
-                            className="bg-white text-base-100 select select-bordered select-sm items-center max-w-xs"
+                            className="bg-white text-[#313641] select select-bordered select-sm items-center max-w-xs"
                             value={item.quantity}
                             onChange={(e) =>
                               updateCartHandler(item, e.target.value)
@@ -158,7 +158,7 @@ function CartPage() {
               </table>
             </div>
 
-            <div className="mt-7 sm:mt-4 md:mt-0 card card-compact dropdown-content w-52 bg-base-100 shadow flex flex-col mx-auto sm:w-[220px] sm:mx-auto justify-center h-[150px]">
+            <div className="mt-7 sm:mt-4 md:mt-0 card card-compact dropdown-content w-52 bg-[#313641] shadow flex flex-col mx-auto sm:w-[220px] sm:mx-auto justify-center h-[150px]">
               <div className="card-body text-white">
                 <div className="flex items-center gap-14 px-1 sm:px-0 justify-between">
                   Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}){""}
@@ -169,7 +169,7 @@ function CartPage() {
 
                 <button
                   onClick={() => router.push("login?redirect=/shipping")}
-                  className="my-auto btn bg-gray-200 text-base-100 active:text-white hover:text-white"
+                  className="my-auto btn bg-gray-200 text-[#313641] active:text-white hover:text-white"
                 >
                   Check Out
                 </button>

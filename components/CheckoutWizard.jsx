@@ -15,7 +15,7 @@ export default function CheckoutWizard({ activeStep = 0 }) {
               key={step}
               className={`step gap-2 ${
                 index <= activeStep
-                  ? "step-success text-success font-bold"
+                  ? "step-[green] text-[green] font-bold"
                   : "step-neutral text-neutral "
               }`}
             >

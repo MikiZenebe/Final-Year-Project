@@ -56,11 +56,11 @@ export default function Nav() {
           placeholder="Search"
         />
         <button
-          className="rounded btn btn-sm p-1 text-sm "
+          className="rounded btn btn-sm p-1 text-sm bg-[#313641]"
           type="submit"
           id="button-addon2"
         >
-          <RiSearchFill className="h-5 w-5 text-white" />
+          <RiSearchFill className="h-5 w-5 text-white hover:text-[#313641]" />
         </button>
       </form>
 
@@ -71,7 +71,7 @@ export default function Nav() {
               <HiShoppingCart size={25} color="black" />
 
               {cartItemsCount > 0 && (
-                <span className="badge badge-sm indicator-item text-white">
+                <span className="badge badge-sm indicator-item bg-[#313641] text-white">
                   {cartItemsCount}
                 </span>
               )}
@@ -85,7 +85,7 @@ export default function Nav() {
               <span className="font-bold text-lg text-white">
                 {cartItemsCount} Items
               </span>
-              <span className="text-info">
+              <span className="text-white">
                 ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
               </span>
               <div className="card-actions">
@@ -104,7 +104,7 @@ export default function Nav() {
             <button className="btn btn-sm btn-square loading"></button>
           ) : session?.user ? (
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <label tabIndex={0} className="btn btn-ghost  avatar">
                 {session.user.name}
               </label>
               <ul

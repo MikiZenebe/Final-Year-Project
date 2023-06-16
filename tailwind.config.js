@@ -9,5 +9,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
 
+  daisyui: {
+    themes: [],
+  },
+
   plugins: [require("daisyui")],
 };

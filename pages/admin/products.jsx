@@ -214,7 +214,7 @@ export default function AdminProducts() {
                 <div className="overflow-x-auto pb-16">
                   <table className="table table-compact w-full text-[#313641]">
                     <thead>
-                      <tr>
+                      <tr className="border border-b-2">
                         <th>ID</th>
                         <th>NAME</th>
                         <th>PRICE</th>
@@ -224,6 +224,7 @@ export default function AdminProducts() {
                         <th>ACTIONS</th>
                       </tr>
                     </thead>
+
                     <tbody>
                       {products.map((product) => (
                         <tr key={product._id}>

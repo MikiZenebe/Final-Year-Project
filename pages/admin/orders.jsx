@@ -167,7 +167,7 @@ export default function AdminOrders() {
                         </td>
                         <td>
                           <Link href={`/order/${order._id}`} passHref>
-                            <button className="btn btn-sm text-white">
+                            <button className="btn btn-sm text-[#313641] bg-green-400">
                               Details
                             </button>
                           </Link>

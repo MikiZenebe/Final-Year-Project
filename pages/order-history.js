@@ -88,7 +88,9 @@ export default function OrderHistory() {
                   </td>
                   <td>
                     <Link href={`/order/${order._id}`} passHref>
-                      <button className="btn btn-sm text-white">Details</button>
+                      <button className="btn btn-sm text-white bg-green-400 hover:bg-[#313641]">
+                        Details
+                      </button>
                     </Link>
                   </td>
                 </tr>
